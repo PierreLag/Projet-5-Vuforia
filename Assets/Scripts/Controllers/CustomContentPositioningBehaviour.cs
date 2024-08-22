@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
+using Lean.Touch;
 
 public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 {
@@ -11,13 +12,19 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
     [SerializeField]
     ARController arController;
+    [SerializeField]
+    int leanTouchYThreshold;
 
-    HitTestResult previousHitTestResult;
+    LeanFinger initialDown;
 
     // Start is called before the first frame update
     void Start()
     {
         placedObjects = new List<GameObject>();
+
+        LeanTouch.OnFingerDown += OnFingerDown;
+        LeanTouch.OnFingerUpdate += OnFingerHeldDown;
+        LeanTouch.OnFingerUp += OnFingerUp;
     }
 
     // Update is called once per frame
@@ -26,7 +33,35 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         
     }
 
-    public void PlaceNewObject(HitTestResult hitTestResult)
+    private void OnFingerDown(LeanFinger finger)
+    {
+        if (finger.ScreenPosition.y >= leanTouchYThreshold)
+        {
+            Debug.Log("Finger down");
+            initialDown = finger;
+        }
+    }
+
+    private void OnFingerHeldDown(LeanFinger finger)
+    {
+        if (initialDown != null && transparentObject != null)
+        {
+            Debug.Log("Rotating item");
+            transparentObject.transform.Rotate(transparentObject.transform.up, - finger.GetDeltaDegrees(finger.StartScreenPosition));
+        }
+    }
+
+    private void OnFingerUp(LeanFinger finger)
+    {
+        if (initialDown != null)
+        {
+            Debug.Log("Placing item");
+            PlaceNewObject();
+            initialDown = null;
+        }
+    }
+
+    private void PlaceNewObject()
     {
         if (transparentObject != null)
         {
@@ -38,24 +73,19 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
     public void MoveObjects(HitTestResult hitTestResult)
     {
-        if (previousHitTestResult != null)
+        if (spawnedAnchorBehaviour == null)
         {
-            Vector3 deltaPosition = hitTestResult.Position - previousHitTestResult.Position;
-            Quaternion deltaRotation = hitTestResult.Rotation * Quaternion.Inverse(previousHitTestResult.Rotation);
-
+            spawnedAnchorBehaviour = VuforiaBehaviour.Instance.ObserverFactory.CreateAnchorBehaviour("Placed object anchor", hitTestResult);
             if (transparentObject != null)
-            {
-                if (spawnedAnchorBehaviour == null)
-                {
-                    spawnedAnchorBehaviour = VuforiaBehaviour.Instance.ObserverFactory.CreateAnchorBehaviour("Placed object anchor", hitTestResult);
-                    transparentObject.transform.parent = spawnedAnchorBehaviour.transform;
-                }
-                transparentObject.transform.position = hitTestResult.Position;
-                transparentObject.transform.rotation = hitTestResult.Rotation;
-            }
+                transparentObject.transform.parent = spawnedAnchorBehaviour.transform;
         }
 
-        previousHitTestResult = hitTestResult;
+        if (transparentObject != null && initialDown == null)
+        {
+            Debug.Log("Moving transparent object");
+            transparentObject.transform.position = hitTestResult.Position;
+            transparentObject.transform.rotation = hitTestResult.Rotation;
+        }
     }
 
     public void SetTransparentObject(GameObject newObject)
