@@ -12,9 +12,9 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
     GameObject activeObject;
 
     [SerializeField]
-    ARController arController;
+    Camera aRCamera;
     [SerializeField]
-    Canvas newFurnitureCanvas;
+    ARController arController;
     [SerializeField]
     int leanTouchYThreshold;
 
@@ -41,29 +41,31 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
     private void OnFingerDown(LeanFinger finger)
     {
-        switch (currentStatus) {
-            case ARStatus.NEW_OBJECT_MODE:
-                if (finger.ScreenPosition.y >= leanTouchYThreshold)
-                {
-                    initialDown = finger;
-                }
-                break;
-            default:
-                break;
+        if (currentStatus != ARStatus.IDLE_MODE && finger.ScreenPosition.y >= leanTouchYThreshold) {
+            initialDown = finger;
         }
     }
 
     private void OnFingerHeldDown(LeanFinger finger)
     {
-        switch (currentStatus) {
-            case ARStatus.NEW_OBJECT_MODE:
-                if (initialDown != null && transparentObject != null)
-                {
+        if (initialDown != null)
+        {
+            switch (currentStatus)
+            {
+                case ARStatus.NEW_OBJECT_MODE:
                     transparentObject.transform.Rotate(transparentObject.transform.up, -finger.GetDeltaDegrees(finger.StartScreenPosition));
-                }
-                break;
-            default:
-                break;
+                    break;
+                case ARStatus.MOVEMENT_MODE:
+                    float xtranslate = finger.ScreenPosition.x - finger.LastScreenPosition.x;
+                    float ztranslate = finger.ScreenPosition.y - finger.LastScreenPosition.y;
+                    activeObject.transform.Translate(xtranslate, 0, ztranslate);
+                    break;
+                case ARStatus.ROTATE_MODE:
+                    activeObject.transform.Rotate(activeObject.transform.up, -finger.GetDeltaDegrees(finger.StartScreenPosition));
+                    break;
+                default:
+                    break;
+            }
         }
     }
 
@@ -71,14 +73,14 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
     {
         switch (currentStatus) {
             case ARStatus.NEW_OBJECT_MODE:
-                if (initialDown != null)
-                {
-                    PlaceNewObject();
-                    initialDown = null;
-                }
-                currentStatus = ARStatus.IDLE_MODE;
+                PlaceNewObject();
+                initialDown = null;
+                ChangeStatus(ARStatus.IDLE_MODE);
+                break;
+            case ARStatus.IDLE_MODE:
                 break;
             default:
+                ChangeStatus(ARStatus.IDLE_MODE);
                 break;
         }
     }
@@ -107,18 +109,33 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
             transparentObject.transform.position = hitTestResult.Position;
             transparentObject.transform.rotation = hitTestResult.Rotation;
         }
+
+        if (currentStatus == ARStatus.IDLE_MODE)
+        {
+            List<GameObject> furnitureUIs = new List<GameObject>();
+
+            foreach (GameObject furniture in placedObjects)
+            {
+                furnitureUIs.Add(furniture.transform.GetChild(0).gameObject);
+            }
+
+            foreach (GameObject ui in furnitureUIs) { 
+                ui.transform.LookAt(aRCamera.transform.position);
+            }
+        }
     }
 
     public void SetTransparentObject(GameObject newObject)
     {
-        currentStatus = ARStatus.NEW_OBJECT_MODE;
-
         if (transparentObject != null)
             Destroy(transparentObject);
 
         transparentObject = Instantiate(newObject);
         transparentObject.SetActive(true);
         transparentObject.GetComponent<MeshRenderer>().material = arController.GetTransparentMaterial();
+        transparentObject.transform.GetChild(0).gameObject.SetActive(false);
+
+        ChangeStatus(ARStatus.NEW_OBJECT_MODE);
 
         if (spawnedAnchorBehaviour != null)
             transparentObject.transform.parent = spawnedAnchorBehaviour.transform;
@@ -127,25 +144,45 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
     public void MovePlacedFurniture(GameObject furniture)
     {
         activeObject = furniture;
-        currentStatus = ARStatus.MOVEMENT_MODE;
+        ChangeStatus(ARStatus.MOVEMENT_MODE);
+    }
+
+    public void RotatePlacedFurniture(GameObject furniture)
+    {
+        activeObject = furniture;
+        ChangeStatus(ARStatus.ROTATE_MODE);
+    }
+
+    public void DeletePlacedObject(GameObject furniture)
+    {
+        placedObjects.Remove(furniture);
+        Destroy(furniture);
     }
 
     private void ChangeStatus(ARStatus newStatus)
     {
         currentStatus = newStatus;
 
-        GameObject[] furnitureUIs = GameObject.FindGameObjectsWithTag("World UI");
+        List<GameObject> furnitureUIs = new List<GameObject>();
 
-        switch (newStatus)
+        foreach(GameObject furniture in placedObjects)
         {
-            case ARStatus.IDLE_MODE:
-                break;
-            case ARStatus.NEW_OBJECT_MODE:
-                break;
-            case ARStatus.MOVEMENT_MODE:
-                break;
-            case ARStatus.ROTATE_MODE:
-                break;
+            furnitureUIs.Add(furniture.transform.GetChild(0).gameObject);
+        }
+
+        if (newStatus == ARStatus.IDLE_MODE)
+        {
+            foreach (GameObject ui in furnitureUIs)
+            {
+                ui.SetActive(true);
+            }
+        }
+        else
+        {
+            foreach (GameObject ui in furnitureUIs)
+            {
+                ui.SetActive(false);
+            }
         }
     }
 }
