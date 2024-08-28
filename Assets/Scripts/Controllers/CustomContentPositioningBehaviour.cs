@@ -73,9 +73,12 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
     {
         switch (currentStatus) {
             case ARStatus.NEW_OBJECT_MODE:
-                PlaceNewObject();
-                initialDown = null;
-                ChangeStatus(ARStatus.IDLE_MODE);
+                if (initialDown != null)
+                {
+                    PlaceNewObject();
+                    initialDown = null;
+                    ChangeStatus(ARStatus.IDLE_MODE);
+                }
                 break;
             case ARStatus.IDLE_MODE:
                 break;
@@ -87,12 +90,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
     private void PlaceNewObject()
     {
-        if (transparentObject != null)
-        {
-            transparentObject.GetComponent<MeshRenderer>().material = arController.GetFullMaterial();
-            placedObjects.Add(transparentObject);
-            transparentObject = null;
-        }
+        transparentObject.GetComponentInChildren<MeshRenderer>().material = arController.GetFullMaterial();
+        transparentObject.GetComponentInChildren<Canvas>(true).gameObject.SetActive(true);
+        placedObjects.Add(transparentObject);
+        transparentObject = null;
     }
 
     public void MoveObjects(HitTestResult hitTestResult)
@@ -116,7 +117,7 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
             foreach (GameObject furniture in placedObjects)
             {
-                furnitureUIs.Add(furniture.transform.GetChild(0).gameObject);
+                furnitureUIs.Add(furniture.GetComponentInChildren<Canvas>().gameObject);
             }
 
             foreach (GameObject ui in furnitureUIs) { 
@@ -132,8 +133,8 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
         transparentObject = Instantiate(newObject);
         transparentObject.SetActive(true);
-        transparentObject.GetComponent<MeshRenderer>().material = arController.GetTransparentMaterial();
-        transparentObject.transform.GetChild(0).gameObject.SetActive(false);
+        transparentObject.GetComponentInChildren<MeshRenderer>().material = arController.GetTransparentMaterial();
+        transparentObject.GetComponentInChildren<Canvas>().gameObject.SetActive(false);
 
         ChangeStatus(ARStatus.NEW_OBJECT_MODE);
 
@@ -167,7 +168,7 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
         foreach(GameObject furniture in placedObjects)
         {
-            furnitureUIs.Add(furniture.transform.GetChild(0).gameObject);
+            furnitureUIs.Add(furniture.GetComponentInChildren<Canvas>(true).gameObject);
         }
 
         if (newStatus == ARStatus.IDLE_MODE)
