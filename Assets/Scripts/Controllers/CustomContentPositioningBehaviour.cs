@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vuforia;
 using Lean.Touch;
+using System.Threading.Tasks;
 
 public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 {
@@ -56,8 +57,8 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
                     transparentObject.transform.Rotate(transparentObject.transform.up, -finger.GetDeltaDegrees(finger.StartScreenPosition));
                     break;
                 case ARStatus.MOVEMENT_MODE:
-                    float xtranslate = finger.ScreenPosition.x - finger.LastScreenPosition.x;
-                    float ztranslate = finger.ScreenPosition.y - finger.LastScreenPosition.y;
+                    float xtranslate = (finger.ScaledDelta.x / -1000) * aRCamera.transform.right.x;
+                    float ztranslate = (finger.ScaledDelta.y / -1000) * aRCamera.transform.forward.z;
                     activeObject.transform.Translate(xtranslate, 0, ztranslate);
                     break;
                 case ARStatus.ROTATE_MODE:
@@ -83,6 +84,8 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
             case ARStatus.IDLE_MODE:
                 break;
             default:
+                activeObject = null;
+                initialDown = null;
                 ChangeStatus(ARStatus.IDLE_MODE);
                 break;
         }
@@ -117,7 +120,7 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 
             foreach (GameObject furniture in placedObjects)
             {
-                furnitureUIs.Add(furniture.GetComponentInChildren<Canvas>().gameObject);
+                furnitureUIs.Add(furniture.GetComponentInChildren<Canvas>().transform.parent.gameObject);
             }
 
             foreach (GameObject ui in furnitureUIs) { 
@@ -160,10 +163,8 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         Destroy(furniture);
     }
 
-    private void ChangeStatus(ARStatus newStatus)
+    private async void ChangeStatus(ARStatus newStatus)
     {
-        currentStatus = newStatus;
-
         List<GameObject> furnitureUIs = new List<GameObject>();
 
         foreach(GameObject furniture in placedObjects)
@@ -183,7 +184,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
             foreach (GameObject ui in furnitureUIs)
             {
                 ui.SetActive(false);
+                await Task.Delay(100);
             }
         }
+
+        currentStatus = newStatus;
     }
 }
