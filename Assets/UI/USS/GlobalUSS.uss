@@ -1,0 +1,19 @@
+#Background {
+    background-color: rgb(223, 255, 244);
+}
+
+#TitleContainer {
+    height: 5%;
+    max-height: 8%;
+    min-height: 150px;
+    background-color: rgb(0, 229, 73);
+}
+
+#TitleContainer > .unity-label {
+    font-size: 80px;
+    -unity-text-align: middle-left;
+    justify-content: flex-start;
+    align-self: flex-start;
+    height: 100%;
+    margin-left: 5%;
+}
