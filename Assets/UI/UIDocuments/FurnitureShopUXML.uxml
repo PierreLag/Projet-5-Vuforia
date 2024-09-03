@@ -4,16 +4,13 @@
         <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
             <ui:Label tabindex="-1" text="Accueil" parse-escape-sequences="true" display-tooltip-when-elided="true" />
         </ui:VisualElement>
-        <ui:VisualElement name="AccountArea" style="background-color: rgb(238, 238, 238);">
+        <ui:VisualElement name="AccountArea" style="flex-grow: 1; max-height: 8%; height: 5%; min-height: 120px; flex-direction: row-reverse; align-items: center; background-color: rgb(238, 238, 238);">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
             <ui:Label tabindex="-1" text="Username" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
             <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
-            <ui:VisualElement name="NavigationButtons" style="flex-grow: 1;">
-                <ui:Button text="Magasin" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ShopButton" />
-                <ui:Button text="Test Realite Augmentee" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ARTestButton" />
-            </ui:VisualElement>
+            <ui:GroupBox />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-left@2x&quot;);" />
