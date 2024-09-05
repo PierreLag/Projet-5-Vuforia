@@ -441,7 +441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2efe3cf85b0c0fa4388c0b0f92f22846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  homeDocument: {fileID: 1160838483}
+  documentsReferences:
+  - {fileID: 1160838483}
+  - {fileID: 428792743}
   furnitureNavigationTemplate: {fileID: 9197481963319205126, guid: a264aac40d77970448b988519a7cd07b,
     type: 3}
 --- !u!1 &1160838482
