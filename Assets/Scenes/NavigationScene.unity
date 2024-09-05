@@ -153,6 +153,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &362063353
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 362063355}
+  - component: {fileID: 362063354}
+  m_Layer: 0
+  m_Name: ApplicationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &362063354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362063353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0cda591e7455344ba499de949e0b66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allFurnituresCatalogue: {fileID: 11400000, guid: 520943b53b6ea9640989448fd19fce95,
+    type: 2}
+--- !u!4 &362063355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362063353}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &380446977
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,6 +406,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 650262208}
+  - component: {fileID: 650262209}
   m_Layer: 0
   m_Name: NavigationUIController
   m_TagString: Untagged
@@ -382,6 +429,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &650262209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650262207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2efe3cf85b0c0fa4388c0b0f92f22846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  homeDocument: {fileID: 1160838483}
+  furnitureNavigationTemplate: {fileID: 9197481963319205126, guid: a264aac40d77970448b988519a7cd07b,
+    type: 3}
 --- !u!1 &1160838482
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +638,7 @@ SceneRoots:
   - {fileID: 380446979}
   - {fileID: 441014353}
   - {fileID: 650262208}
+  - {fileID: 362063355}
   - {fileID: 31406694}
   - {fileID: 1160838484}
   - {fileID: 428792744}

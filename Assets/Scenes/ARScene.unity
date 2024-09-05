@@ -209,13 +209,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61d07acce11f0f04f8b467ae7ab64cf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullMaterial: {fileID: 2100000, guid: a88ec864e1a9c704f901b331887e870c, type: 2}
+  transparentMaterial: {fileID: 2100000, guid: de36e6640bcf3944b91c4fc022974e9c, type: 2}
+  customContentPositioning: {fileID: 1224429451}
   objectsToPlace:
   - {fileID: 2011282269}
   - {fileID: 472997336}
   - {fileID: 2111702383}
-  fullMaterial: {fileID: 2100000, guid: a88ec864e1a9c704f901b331887e870c, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: de36e6640bcf3944b91c4fc022974e9c, type: 2}
-  customContentPositioning: {fileID: 1224429451}
 --- !u!4 &294642717
 Transform:
   m_ObjectHideFlags: 0
@@ -442,6 +442,43 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1726371354}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: price
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: width
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: height
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: length
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: description
+      value: "Cette machine \xE0 caf\xE9 va vous aider \xE0 \xEAtre \xE9veill\xE9
+        chaque matin"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureName
+      value: "Machine \xE0 caf\xE9"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ac60759ef650894dbd61d8f8d6d80ab,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1279,6 +1316,42 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1726371354}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: price
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: width
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: height
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: length
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: description
+      value: Une table de hokey pour jouer avec un ami
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureName
+      value: Table de Hokey
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: 22b0e08c82c57fc46bf77180af0187fb,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1393,6 +1466,42 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1726371354}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: price
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: width
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: height
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: length
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: description
+      value: "Cette chaise confortable ira bien dans toutes sortes de pi\xE8ces"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureName
+      value: Chaise
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401262694683560640, guid: 5338be6302d64c34f9a390b6f934b2ed,
+        type: 3}
+      propertyPath: furnitureDetails
+      value: 
+      objectReference: {fileID: 11400000, guid: da6a5c752bb007f42a93662717bfa2c4,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

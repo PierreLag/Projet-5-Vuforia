@@ -7,22 +7,25 @@ using System.Threading.Tasks;
 public class ARController : MonoBehaviour
 {
     [SerializeField]
-    List<GameObject> objectsToPlace;
-
-    [SerializeField]
     Material fullMaterial;
     [SerializeField]
     Material transparentMaterial;
 
     [SerializeField]
     CustomContentPositioningBehaviour customContentPositioning;
+    [SerializeField]
+    List<FurnitureDisplayController> objectsToPlace;
+
+    ApplicationManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject furniture in objectsToPlace)
+        manager = GameObject.FindObjectOfType<ApplicationManager>();
+
+        foreach (FurnitureDisplayController furniture in objectsToPlace)
         {
-            furniture.SetActive(false);
+            furniture.gameObject.SetActive(false);
         }
     }
 
@@ -34,17 +37,17 @@ public class ARController : MonoBehaviour
 
     public void ShowTransparentHokey()
     {
-        customContentPositioning.SetTransparentObject(objectsToPlace[0]);
+        customContentPositioning.SetTransparentObject(objectsToPlace[0].gameObject);
     }
 
     public void ShowTransparentCoffee()
     {
-        customContentPositioning.SetTransparentObject(objectsToPlace[1]);
+        customContentPositioning.SetTransparentObject(objectsToPlace[1].gameObject);
     }
 
     public void ShowTransparentChair()
     {
-        customContentPositioning.SetTransparentObject(objectsToPlace[2]);
+        customContentPositioning.SetTransparentObject(objectsToPlace[2].gameObject);
     }
 
     public Material GetFullMaterial()

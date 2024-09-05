@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class FurnitureDisplayController : MonoBehaviour
 {
     CustomContentPositioningBehaviour customContentPositioningBehaviour;
 
+    [SerializeField]
+    private TextMeshProUGUI furnitureDescriptionBox;
+
+    [SerializeField]
+    private FurnitureSO furnitureDetails;
+
     // Start is called before the first frame update
     void Start()
     {
         customContentPositioningBehaviour = GameObject.Find("Plane Finder").GetComponent<CustomContentPositioningBehaviour>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        furnitureDescriptionBox.SetText(furnitureDetails.name + '\n'
+                                        + "Dimensions : " + furnitureDetails.width + " x " + furnitureDetails.length + " x " + furnitureDetails.height + '\n'
+                                        + "Prix : " + furnitureDetails.price);
     }
 
     public void MoveFurniture()
