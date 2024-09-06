@@ -20,7 +20,7 @@ public class FurnitureDisplayController : MonoBehaviour
 
         furnitureDescriptionBox.SetText(furnitureDetails.name + '\n'
                                         + "Dimensions : " + furnitureDetails.width + " x " + furnitureDetails.length + " x " + furnitureDetails.height + '\n'
-                                        + "Prix : " + furnitureDetails.price);
+                                        + "Prix : " + furnitureDetails.price + " €");
     }
 
     public void MoveFurniture()

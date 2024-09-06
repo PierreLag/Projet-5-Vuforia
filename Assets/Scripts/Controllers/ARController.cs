@@ -14,40 +14,24 @@ public class ARController : MonoBehaviour
     [SerializeField]
     CustomContentPositioningBehaviour customContentPositioning;
     [SerializeField]
-    List<FurnitureDisplayController> objectsToPlace;
+    List<GameObject> objectsToPlace;
 
-    ApplicationManager manager;
+    //ApplicationManager manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.FindObjectOfType<ApplicationManager>();
+        //manager = GameObject.FindObjectOfType<ApplicationManager>();
 
-        foreach (FurnitureDisplayController furniture in objectsToPlace)
+        foreach (GameObject furniture in objectsToPlace)
         {
-            furniture.gameObject.SetActive(false);
+            furniture.SetActive(false);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowTransparentFurniture(int index)
     {
-        
-    }
-
-    public void ShowTransparentHokey()
-    {
-        customContentPositioning.SetTransparentObject(objectsToPlace[0].gameObject);
-    }
-
-    public void ShowTransparentCoffee()
-    {
-        customContentPositioning.SetTransparentObject(objectsToPlace[1].gameObject);
-    }
-
-    public void ShowTransparentChair()
-    {
-        customContentPositioning.SetTransparentObject(objectsToPlace[2].gameObject);
+        customContentPositioning.SetTransparentObject(objectsToPlace[index]);
     }
 
     public Material GetFullMaterial()

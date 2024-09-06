@@ -19,17 +19,17 @@ public class ApplicationManager : MonoBehaviour
             _this = this;
     }
 
-    public CatalogueSO GetFurnitureList()
+    public static CatalogueSO GetFurnitureList()
     {
-        return allFurnituresCatalogue;
+        return _this.allFurnituresCatalogue;
     }
 
-    public void EnableARTestScene()
+    public static void EnableARTestScene()
     {
         SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
     }
 
-    public void DisableARTestScene()
+    public static void DisableARTestScene()
     {
         SceneManager.UnloadSceneAsync(1);
     }

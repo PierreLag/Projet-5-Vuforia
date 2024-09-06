@@ -1539,7 +1539,7 @@ PrefabInstance:
     - target: {fileID: 792921912879424386, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 792921912879424386, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
@@ -1554,7 +1554,7 @@ PrefabInstance:
     - target: {fileID: 792921912879424386, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowTransparentHokey
+      value: ShowTransparentFurniture
       objectReference: {fileID: 0}
     - target: {fileID: 792921912879424386, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
@@ -1574,7 +1574,7 @@ PrefabInstance:
     - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
@@ -1589,12 +1589,17 @@ PrefabInstance:
     - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowTransparentCoffee
+      value: ShowTransparentFurniture
       objectReference: {fileID: 0}
     - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ARController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1691699795372357179, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
@@ -1614,7 +1619,7 @@ PrefabInstance:
     - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
@@ -1629,12 +1634,17 @@ PrefabInstance:
     - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowTransparentChair
+      value: ShowTransparentFurniture
       objectReference: {fileID: 0}
     - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ARController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5475453848793392321, guid: fa8852798a777a74c8dc7fa95ea47eea,
         type: 3}
