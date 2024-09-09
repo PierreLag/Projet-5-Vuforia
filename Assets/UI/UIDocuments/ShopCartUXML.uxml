@@ -1,0 +1,22 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/GlobalUSS.uss?fileID=7433441132597879392&amp;guid=80173d77144b2724cb51949957ce8a86&amp;type=3#GlobalUSS" />
+    <Style src="project://database/Assets/UI/USS/ShopCartUSS.uss?fileID=7433441132597879392&amp;guid=6d2e5f6f92ba080448bca4e9c94fc410&amp;type=3#ShopCartUSS" />
+    <ui:VisualElement name="Background" style="flex-grow: 1;">
+        <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Panier" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AccountArea" style="flex-grow: 1; max-height: 8%; height: 5%; min-height: 120px; flex-direction: row-reverse; align-items: center; background-color: rgb(238, 238, 238);">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
+            <ui:Label tabindex="-1" text="Username" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
+            <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Content" style="flex-grow: 1;">
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="Cart" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Footer" style="flex-grow: 1;">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-left@2x&quot;);" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-4528830608231651361&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-up@2x&quot;);" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuickMenuButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-right@2x&quot;);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

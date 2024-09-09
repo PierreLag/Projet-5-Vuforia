@@ -17,6 +17,7 @@ public class NavigationUIController : MonoBehaviour
 
     ApplicationManager manager;
     List<UIDocument> documentHistory;
+    FurnitureSO displayedFurniture;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class NavigationUIController : MonoBehaviour
         currentDocument = documentsReferences[0];
         manager = GameObject.FindObjectOfType<ApplicationManager>();
         documentHistory = new List<UIDocument>();
+        documentHistory.Add(currentDocument);
 
         VisualElement docRoot = currentDocument.rootVisualElement;
         docRoot.Q<Button>("ShopButton").clicked += GoToShop;
@@ -40,7 +42,7 @@ public class NavigationUIController : MonoBehaviour
 
     private void GoBack()
     {
-        if (documentHistory.Count > 0)
+        if (documentHistory.Count > 1)
         {
             ChangeNavigationDocument(documentHistory[documentHistory.Count - 1]);
             documentHistory.RemoveAt(documentHistory.Count - 1);
@@ -68,22 +70,28 @@ public class NavigationUIController : MonoBehaviour
                 newRoot.Q<Button>("ARTestButton").clicked += GoToARTest;
                 break;
             case "FurnitureShopDocument":
-                Debug.Log("Initialising shop document");
-
                 CatalogueSO allFurnitures = ApplicationManager.GetFurnitureList();
                 ScrollView scrollView = newRoot.Q<ScrollView>("FurnitureSelection");
 
                 foreach (FurnitureSO furniture in allFurnitures.furnitures)
                 {
-                    VisualElement furnitureDisplay = furnitureNavigationTemplate.CloneTree().Q<VisualElement>(null, new string[] { "FurnitureDisplay" });
+                    Button furnitureDisplay = furnitureNavigationTemplate.CloneTree().Q<Button>(null, new string[] { "FurnitureDisplay" });
 
                     furnitureDisplay.Q<Label>(className: "FurnitureName").text = furniture.name;
                     furnitureDisplay.Q<Label>(className: "FurnitureDescription").text = furniture.description;
                     furnitureDisplay.Q<Label>(className: "FurniturePrice").text = furniture.price.ToString() + " €";
 
+                    furnitureDisplay.clicked += () => GoToFurnitureDetails(furniture);
+
                     scrollView.contentViewport.Add(furnitureDisplay);
-                    Debug.Log("Added new furniture to ScrollView");
                 }
+                break;
+            case "FurnitureDetailsDocument":
+                newRoot.Q<VisualElement>("TitleContainer").Q<Label>().text = displayedFurniture.name;
+                newRoot.Q<VisualElement>("Preview").style.backgroundImage = new StyleBackground(displayedFurniture.preview);
+                newRoot.Q<Label>("Dimensions").text = "Dimensions : " + displayedFurniture.width + " x " + displayedFurniture.length + " x " + displayedFurniture.height;
+                newRoot.Q<Label>("Description").text = displayedFurniture.description;
+                newRoot.Q<Label>("PriceTag").text = "Prix : " + displayedFurniture.price + " €";
                 break;
             default:
                 break;
@@ -100,6 +108,12 @@ public class NavigationUIController : MonoBehaviour
         ApplicationManager.EnableARTestScene();
         currentDocument.gameObject.SetActive(false);
         navigationCamera.gameObject.SetActive(false);
+    }
+
+    private void GoToFurnitureDetails(FurnitureSO furniture)
+    {
+        displayedFurniture = furniture;
+        ChangeNavigationDocument(documentsReferences[2]);
     }
 
     public static void ReenableNavigation()

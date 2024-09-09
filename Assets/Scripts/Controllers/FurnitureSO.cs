@@ -11,4 +11,5 @@ public class FurnitureSO : ScriptableObject
     public float length;
     public float height;
     public float price;
+    public Sprite preview;
 }

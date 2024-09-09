@@ -1,0 +1,54 @@
+#FurnitureDetails {
+    height: 80%;
+}
+
+#Preview {
+    min-height: 420px;
+    align-self: center;
+    -unity-background-scale-mode: scale-to-fit;
+    max-height: 40%;
+    min-width: 420px;
+    max-width: 100%;
+}
+
+#Dimensions {
+    font-size: 50px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+#Description {
+    font-size: 45px;
+    white-space: normal;
+}
+
+#PurchaseBox {
+    align-items: flex-end;
+    flex-grow: 1;
+}
+
+#FurnitureTest {
+    height: 45%;
+    width: 50%;
+    font-size: 55px;
+    margin-bottom: 20px;
+}
+
+#PriceAndCart {
+    width: 100%;
+    align-items: center;
+    flex-direction: row-reverse;
+    height: 45%;
+    flex-grow: 1;
+}
+
+#PriceTag {
+    font-size: 60px;
+    -unity-font-style: bold;
+}
+
+#AddToCart {
+    height: 100%;
+    width: 50%;
+    font-size: 56px;
+}

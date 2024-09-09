@@ -18,3 +18,4 @@ MonoBehaviour:
   length: 1
   height: 0.8
   price: 200
+  preview: {fileID: 21300000, guid: cbe05e6ef7eae2045b5a299befd770a5, type: 3}
