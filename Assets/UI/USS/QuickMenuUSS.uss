@@ -1,0 +1,30 @@
+#Background {
+    flex-direction: row;
+    background-color: rgba(77, 77, 77, 0.53);
+}
+
+#InvisibleGoBackButton {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    width: 40%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+#MenuContainer {
+    flex-direction: column;
+    flex-grow: 1;
+    width: 60%;
+    background-color: rgb(50, 52, 164);
+}
+
+#AppTitle {
+    font-size: 110px;
+    -unity-font-style: bold;
+    margin-top: 80px;
+    color: rgb(229, 229, 229);
+    -unity-text-align: upper-center;
+}

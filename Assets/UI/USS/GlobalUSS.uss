@@ -78,5 +78,21 @@
 #Footer > .unity-button {
     height: 150px;
     width: 150px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+#BackButton {
+    background-image: url("project://database/Assets/UI/Sprites/BackButton.png?fileID=21300000&guid=e9f82266a5e13ea45b2d92a1de45e865&type=3#BackButton");
+}
+
+#HomeButton {
+    background-image: url("project://database/Assets/UI/Sprites/HomeButton.png?fileID=21300000&guid=0715619ec8bc8b6468cb34ebb7b6bc87&type=3#HomeButton");
+}
+
+#QuickMenuButton {
+    background-image: url("project://database/Assets/UI/Sprites/MenuButton.png?fileID=21300000&guid=beaaa171659612d439771f69599b9b25&type=3#MenuButton");
 }

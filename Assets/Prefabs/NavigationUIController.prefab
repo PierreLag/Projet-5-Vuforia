@@ -47,3 +47,6 @@ MonoBehaviour:
   documentsReferences: []
   furnitureNavigationTemplate: {fileID: 9197481963319205126, guid: a264aac40d77970448b988519a7cd07b,
     type: 3}
+  cartFurnitureDisplayTemplate: {fileID: 9197481963319205126, guid: e2e94f756c49e254d99f757c3d90d39a,
+    type: 3}
+  navigationCamera: {fileID: 0}

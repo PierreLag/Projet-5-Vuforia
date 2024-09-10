@@ -14,9 +14,9 @@
             <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="FurnitureSelection" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-left@2x&quot;);" />
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-4528830608231651361&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-up@2x&quot;);" />
-            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuickMenuButton" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=641bea1a11328214ab5b8b935fb7cd43&amp;type=3#arrow-right@2x&quot;);" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeButton" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuickMenuButton" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

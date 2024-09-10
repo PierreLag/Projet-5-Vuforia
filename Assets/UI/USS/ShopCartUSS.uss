@@ -1,3 +1,97 @@
 #Cart {
     height: 80%;
 }
+
+.CartItem {
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 10%;
+    min-height: 300px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    min-width: 100%;
+}
+
+.LeftSide {
+    flex-direction: row;
+    flex-grow: 1;
+    width: 50%;
+    height: 100%;
+}
+
+.FurniturePreview {
+    height: 100%;
+    min-width: 300px;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+.FurnitureName {
+    flex-grow: 1;
+    font-size: 40px;
+    white-space: normal;
+    -unity-text-align: middle-left;
+    align-self: center;
+}
+
+.RightSide {
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.Quantity {
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 15%;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.ReduceQuantity {
+    background-image: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-2236324273849735119&guid=641bea1a11328214ab5b8b935fb7cd43&type=3#arrow-left@2x");
+    -unity-background-scale-mode: scale-to-fit;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.Amount {
+    font-size: 40px;
+    -unity-text-align: middle-center;
+    align-self: center;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.AugmentQuantity {
+    flex-grow: 1;
+    background-image: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&guid=641bea1a11328214ab5b8b935fb7cd43&type=3#arrow-right@2x");
+    -unity-background-scale-mode: scale-to-fit;
+    height: 100%;
+}
+
+.Remove {
+    background-image: url("project://database/Assets/UI/Sprites/DeleteButton.png?fileID=21300000&guid=96c379a8f5fb58646a785d18fd3a13e4&type=3#DeleteButton");
+    -unity-background-scale-mode: scale-to-fit;
+    flex-grow: 1;
+    height: 100%;
+}
+
+.Price {
+    font-size: 50px;
+    flex-grow: 1;
+    -unity-text-align: middle-right;
+}
+
+#TotalContainer {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#TotalPrice {
+    font-size: 70px;
+    -unity-font-style: bold;
+}
