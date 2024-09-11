@@ -13,9 +13,9 @@
         <VisualElement class="RightSide">
             <VisualElement class="Quantity">
                 <Button class="Remove"/>
-                <Button class="AugmentQuantity"/>
+                <Button class="AugmentQuantity navigation-button"/>
                 <Label class="Amount"/>
-                <Button class="ReduceQuantity"/>
+                <Button class="ReduceQuantity navigation-button"/>
             </VisualElement>
             <Label class="Price"/>
         </VisualElement>

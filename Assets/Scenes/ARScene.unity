@@ -880,6 +880,7 @@ MonoBehaviour:
   aRCamera: {fileID: 1726371354}
   arController: {fileID: 294642716}
   leanTouchYThreshold: 340
+  objectMovementSensitivity: 0.002
 --- !u!1 &1365660492
 GameObject:
   m_ObjectHideFlags: 0

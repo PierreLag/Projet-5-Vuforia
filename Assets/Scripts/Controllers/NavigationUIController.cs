@@ -27,7 +27,10 @@ public class NavigationUIController : MonoBehaviour
         if (_this != null)
             Destroy(this);
         else
+        {
             _this = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     // Start is called before the first frame update
@@ -39,6 +42,7 @@ public class NavigationUIController : MonoBehaviour
         userCart = new Dictionary<FurnitureSO, int>();
 
         VisualElement docRoot = currentDocument.rootVisualElement;
+        docRoot.Q<Button>("BackButton").clicked += GoBack;
         docRoot.Q<Button>("ShopButton").clicked += GoToShop;
         docRoot.Q<Button>("ARTestButton").clicked += GoToARTest;
     }
@@ -47,7 +51,7 @@ public class NavigationUIController : MonoBehaviour
     {
         if (documentHistory.Count > 0)
         {
-            ChangeNavigationDocument(documentHistory[documentHistory.Count - 1], true);
+            ChangeNavigationDocument(documentHistory[documentHistory.Count - 1], false);
             documentHistory.RemoveAt(documentHistory.Count - 1);
         }
         else
@@ -56,17 +60,21 @@ public class NavigationUIController : MonoBehaviour
         }
     }
 
-    private void ChangeNavigationDocument(UIDocument newPage, bool isGoBack)
+    private void ChangeNavigationDocument(UIDocument newPage, bool addHistory)
     {
+        HideQuickNavigation();
         newPage.gameObject.SetActive(true);
         VisualElement newRoot = newPage.rootVisualElement;
+
         newRoot.Q<Button>("BackButton").clicked += GoBack;
         newRoot.Q<Button>("HomeButton").clicked += GoToHome;
+        newRoot.Q<Button>("QuickMenuButton").clicked += ShowQuickNavigation;
 
-        if (!isGoBack)
+        if (addHistory)
             documentHistory.Add(currentDocument);
 
-        currentDocument.gameObject.SetActive(false);
+        if (currentDocument != newPage)
+            currentDocument.gameObject.SetActive(false);
         currentDocument = newPage;
 
         switch (newPage.gameObject.name)
@@ -81,7 +89,7 @@ public class NavigationUIController : MonoBehaviour
 
                 foreach (FurnitureSO furniture in allFurnitures.furnitures)
                 {
-                    Button furnitureDisplay = furnitureNavigationTemplate.CloneTree().Q<Button>(null, new string[] { "FurnitureDisplay" });
+                    Button furnitureDisplay = furnitureNavigationTemplate.CloneTree().Q<Button>(null, new string[] { "FurnitureDisplay", "navigation-button" });
 
                     furnitureDisplay.Q<Label>(className: "FurnitureName").text = furniture.name;
                     furnitureDisplay.Q<Label>(className: "FurnitureDescription").text = furniture.description;
@@ -111,12 +119,12 @@ public class NavigationUIController : MonoBehaviour
 
     private void GoToHome()
     {
-        ChangeNavigationDocument(documentsReferences[0], false);
+        ChangeNavigationDocument(documentsReferences[0], true);
     }
 
     private void GoToShop()
     {
-        ChangeNavigationDocument(documentsReferences[1], false);
+        ChangeNavigationDocument(documentsReferences[1], true);
     }
 
     private void GoToARTest()
@@ -129,12 +137,12 @@ public class NavigationUIController : MonoBehaviour
     private void GoToFurnitureDetails(FurnitureSO furniture)
     {
         displayedFurniture = furniture;
-        ChangeNavigationDocument(documentsReferences[2], false);
+        ChangeNavigationDocument(documentsReferences[2], true);
     }
 
     public static void ReenableNavigation()
     {
-        currentDocument.gameObject.SetActive(true);
+        _this.ChangeNavigationDocument(currentDocument, false);
         _this.navigationCamera.gameObject.SetActive(true);
     }
 
@@ -148,7 +156,12 @@ public class NavigationUIController : MonoBehaviour
         {
             userCart.Add(displayedFurniture, 1);
         }
-        ChangeNavigationDocument(documentsReferences[3], false);
+        ChangeNavigationDocument(documentsReferences[3], true);
+    }
+
+    private void GoToCart()
+    {
+        ChangeNavigationDocument(documentsReferences[3], true);
     }
 
     private void IncrementFurnitureCart(FurnitureSO furniture)
@@ -199,5 +212,37 @@ public class NavigationUIController : MonoBehaviour
         }
 
         currentDocument.rootVisualElement.Q<Label>("TotalPrice").text = "Total : " + totalPrice + " €";
+    }
+
+    private void ShowQuickNavigation()
+    {
+        documentsReferences[4].gameObject.SetActive(true);
+
+        VisualElement menuRoot = documentsReferences[4].rootVisualElement;
+
+        menuRoot.Q<Button>("InvisibleGoBackButton").clicked += HideQuickNavigation;
+        menuRoot.Q<Button>("HomeButton").clicked += GoToHome;
+        menuRoot.Q<Button>("ShopButton").clicked += GoToShop;
+        menuRoot.Q<Button>("CartButton").clicked += GoToCart;
+    }
+
+    private void HideQuickNavigation()
+    {
+        documentsReferences[4].gameObject.SetActive(false);
+    }
+
+    public static void FromARToCartWithItems(List<FurnitureSO> placedFurnitures)
+    {
+        ReenableNavigation();
+
+        foreach (FurnitureSO furniture in placedFurnitures)
+        {
+            if (_this.userCart.ContainsKey(furniture))
+                _this.userCart[furniture]++;
+            else
+                _this.userCart.Add(furniture, 1);
+        }
+
+        _this.GoToCart();
     }
 }

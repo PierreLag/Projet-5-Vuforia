@@ -19,7 +19,7 @@ public class FurnitureDisplayController : MonoBehaviour
         customContentPositioningBehaviour = GameObject.Find("Plane Finder").GetComponent<CustomContentPositioningBehaviour>();
 
         furnitureDescriptionBox.SetText(furnitureDetails.name + '\n'
-                                        + "Dimensions : " + furnitureDetails.width + " x " + furnitureDetails.length + " x " + furnitureDetails.height + '\n'
+                                        + "Dimensions : " + furnitureDetails.width + "m x " + furnitureDetails.length + "m x " + furnitureDetails.height + "m" + '\n'
                                         + "Prix : " + furnitureDetails.price + " €");
     }
 
@@ -36,5 +36,10 @@ public class FurnitureDisplayController : MonoBehaviour
     public void DeleteFurniture()
     {
         customContentPositioningBehaviour.DeletePlacedObject(gameObject);
+    }
+
+    public FurnitureSO GetFurnitureSO()
+    {
+        return furnitureDetails;
     }
 }

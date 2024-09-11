@@ -16,7 +16,10 @@ public class ApplicationManager : MonoBehaviour
         if (_this != null)
             Destroy(this);
         else
+        {
             _this = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
     public static CatalogueSO GetFurnitureList()
@@ -32,5 +35,18 @@ public class ApplicationManager : MonoBehaviour
     public static void DisableARTestScene()
     {
         SceneManager.UnloadSceneAsync(1);
+    }
+
+    public static void GoToCartWithPlacedARItems()
+    {
+        List<GameObject> placedObjects = CustomContentPositioningBehaviour.GetPlacedObjects();
+        List<FurnitureSO> placedFurniture = new List<FurnitureSO>();
+
+        foreach (GameObject placedObject in placedObjects) {
+            placedFurniture.Add(placedObject.GetComponent<FurnitureDisplayController>().GetFurnitureSO());
+        }
+
+        DisableARTestScene();
+        NavigationUIController.FromARToCartWithItems(placedFurniture);
     }
 }

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
 {
+    static List<GameObject> placedObjects;
+
     AnchorBehaviour spawnedAnchorBehaviour;
     GameObject transparentObject;
-    List<GameObject> placedObjects;
     GameObject activeObject;
 
     [SerializeField]
@@ -18,6 +19,8 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
     ARController arController;
     [SerializeField]
     int leanTouchYThreshold;
+    [SerializeField][Range(0f, 1f)]
+    float objectMovementSensitivity;
 
     LeanFinger initialDown;
     ARStatus currentStatus;
@@ -32,12 +35,6 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         LeanTouch.OnFingerDown += OnFingerDown;
         LeanTouch.OnFingerUpdate += OnFingerHeldDown;
         LeanTouch.OnFingerUp += OnFingerUp;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnFingerDown(LeanFinger finger)
@@ -57,9 +54,15 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
                     transparentObject.transform.Rotate(transparentObject.transform.up, -finger.GetDeltaDegrees(finger.StartScreenPosition));
                     break;
                 case ARStatus.MOVEMENT_MODE:
-                    float xtranslate = (finger.ScaledDelta.x / -1000) * aRCamera.transform.right.x;
-                    float ztranslate = (finger.ScaledDelta.y / -1000) * aRCamera.transform.forward.z;
-                    activeObject.transform.Translate(xtranslate, 0, ztranslate);
+                    float xFingerMovement = finger.ScaledDelta.x * objectMovementSensitivity;
+                    float yFingerMovement = finger.ScaledDelta.y * objectMovementSensitivity;
+
+                    Transform relativeTransform = aRCamera.transform;
+                    relativeTransform.LookAt(new Vector3(relativeTransform.position.x + relativeTransform.forward.x,
+                                                         relativeTransform.position.y,
+                                                         relativeTransform.position.z + relativeTransform.forward.z));
+
+                    activeObject.transform.Translate(xFingerMovement, 0, yFingerMovement, relativeTransform);
                     break;
                 case ARStatus.ROTATE_MODE:
                     activeObject.transform.Rotate(activeObject.transform.up, -finger.GetDeltaDegrees(finger.StartScreenPosition));
@@ -189,5 +192,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         }
 
         currentStatus = newStatus;
+    }
+
+    public static List<GameObject> GetPlacedObjects()
+    {
+        return placedObjects;
     }
 }

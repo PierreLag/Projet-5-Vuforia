@@ -27,4 +27,34 @@
     margin-top: 80px;
     color: rgb(229, 229, 229);
     -unity-text-align: upper-center;
+    margin-bottom: 20%;
+}
+
+#QuickNavigation {
+    padding-top: 200px;
+    padding-right: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#QuickNavigation > .unity-button {
+    width: 80%;
+    align-self: center;
+    height: 5%;
+    max-height: 150px;
+    min-height: 100px;
+    font-size: 50px;
+    -unity-text-align: middle-center;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgb(255, 255, 255);
+    color: rgb(209, 209, 209);
+    -unity-font-style: bold;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-bottom-width: 5px;
 }

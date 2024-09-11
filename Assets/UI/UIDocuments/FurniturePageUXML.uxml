@@ -17,9 +17,9 @@
                 <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
             </ui:ScrollView>
             <ui:VisualElement name="PurchaseBox" style="flex-grow: 1; align-items: flex-end;">
-                <ui:Button text="Tester en AR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FurnitureTest" />
+                <ui:Button text="Tester en AR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="FurnitureTest" class="navigation-button" />
                 <ui:VisualElement name="PriceAndCart">
-                    <ui:Button text="Ajouter au panier" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddToCart" />
+                    <ui:Button text="Ajouter au panier" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AddToCart" class="navigation-button" />
                     <ui:Label tabindex="-1" text="Prix : " parse-escape-sequences="true" display-tooltip-when-elided="true" name="PriceTag" />
                 </ui:VisualElement>
             </ui:VisualElement>
