@@ -7,6 +7,8 @@
     max-height: 8%;
     min-height: 150px;
     background-color: rgb(60, 152, 238);
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 #TitleContainer > .unity-label {
@@ -16,6 +18,15 @@
     align-self: flex-start;
     height: 100%;
     margin-left: 5%;
+}
+
+#AppName {
+    margin-right: 5%;
+    margin-left: 0;
+    -unity-font-style: bold;
+    text-shadow: 10px 5px 5px rgba(255, 255, 255, 0.47);
+    -unity-text-outline-color: rgb(255, 255, 255);
+    -unity-text-outline-width: 2px;
 }
 
 #AccountArea {
@@ -65,9 +76,17 @@
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-left-color: rgb(65, 75, 178);
+    border-right-color: rgb(65, 75, 178);
+    border-top-color: rgb(65, 75, 178);
+    border-bottom-color: rgb(65, 75, 178);
 }
 
-.navigation-button :focus {
+.navigation-button:hover {
     color: rgb(29, 29, 29);
     background-color: rgb(255, 255, 255);
     border-left-color: rgb(65, 75, 178);

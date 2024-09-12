@@ -5,6 +5,7 @@
             <ui:Label tabindex="-1" text="IkeAR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppTitle" />
             <ui:VisualElement name="QuickNavigation" style="flex-grow: 1;">
                 <ui:Button text="Accueil" parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeButton" />
+                <ui:Button text="Test AR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ARButton" />
                 <ui:Button text="Magasin" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ShopButton" />
                 <ui:Button text="Panier" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CartButton" />
             </ui:VisualElement>

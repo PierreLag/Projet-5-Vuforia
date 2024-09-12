@@ -58,6 +58,10 @@
     height: 100%;
 }
 
+.ReduceQuantity:hover {
+    -unity-background-image-tint-color: rgb(0, 0, 0);
+}
+
 .Amount {
     font-size: 40px;
     -unity-text-align: middle-center;
@@ -71,6 +75,10 @@
     background-image: url("project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&guid=641bea1a11328214ab5b8b935fb7cd43&type=3#arrow-right@2x");
     -unity-background-scale-mode: scale-to-fit;
     height: 100%;
+}
+
+.AugmentQuantity:hover {
+    -unity-background-image-tint-color: rgb(0, 0, 0);
 }
 
 .Remove {

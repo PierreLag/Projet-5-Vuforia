@@ -6,8 +6,11 @@
     xsi:noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd"
 >
     <Button class="FurnitureDisplay navigation-button" text="">
-        <Label class="FurnitureName"/>
-        <Label class="FurnitureDescription"/>
-        <Label class="FurniturePrice"/>
+        <VisualElement class="FurniturePreview"/>
+        <VisualElement class="FurnitureInfos">
+            <Label class="FurnitureName"/>
+            <Label class="FurnitureDescription"/>
+            <Label class="FurniturePrice"/>
+        </VisualElement>
     </Button>
 </UXML>

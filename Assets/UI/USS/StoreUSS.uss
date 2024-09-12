@@ -1,4 +1,16 @@
 .FurnitureDisplay {
+    flex-direction: row;
+}
+
+.FurniturePreview {
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+    width: 20%;
+}
+
+.FurnitureInfos {
+    width: 80%;
+    flex-direction: column;
 }
 
 .FurnitureName {
@@ -7,6 +19,8 @@
 
 .FurnitureDescription {
     font-size: 35px;
+    white-space: normal;
+    -unity-text-align: upper-center;
 }
 
 .FurniturePrice {

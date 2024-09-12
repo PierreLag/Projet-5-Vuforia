@@ -22,21 +22,34 @@ public class ApplicationManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Retourne la liste de tous les mobiliers disponibles dans le catalogue.
+    /// </summary>
+    /// <returns>Le catalogue de tous les mobiliers disponibles.</returns>
     public static CatalogueSO GetFurnitureList()
     {
         return _this.allFurnituresCatalogue;
     }
 
+    /// <summary>
+    /// Charge de manière additive la scène de test de mobiliers en Réalité Augmentée.
+    /// </summary>
     public static void EnableARTestScene()
     {
         SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
     }
 
+    /// <summary>
+    /// Décharge la scène de test de mobiliers en Réalité Augmentée.
+    /// </summary>
     public static void DisableARTestScene()
     {
         SceneManager.UnloadSceneAsync(1);
     }
 
+    /// <summary>
+    /// Ajoute tous les objets placés dans la scène dans le panier de l'utilisateur, et décharge la scène.
+    /// </summary>
     public static void GoToCartWithPlacedARItems()
     {
         List<GameObject> placedObjects = CustomContentPositioningBehaviour.GetPlacedObjects();

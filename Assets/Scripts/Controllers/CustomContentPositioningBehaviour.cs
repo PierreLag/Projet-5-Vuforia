@@ -37,6 +37,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         LeanTouch.OnFingerUp += OnFingerUp;
     }
 
+    /// <summary>
+    /// Méthode customisée activée au moment où l'utilisateur appuie sur l'écran.
+    /// </summary>
+    /// <param name="finger">Le doigt LeanFinger qui active l'événement</param>
     private void OnFingerDown(LeanFinger finger)
     {
         if (currentStatus != ARStatus.IDLE_MODE && finger.ScreenPosition.y >= leanTouchYThreshold) {
@@ -44,6 +48,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Méthode customisée activée tant que l'utilisateur appuie sur l'écran.
+    /// </summary>
+    /// <param name="finger">Le doigt LeanFinger qui active l'événement</param>
     private void OnFingerHeldDown(LeanFinger finger)
     {
         if (initialDown != null)
@@ -73,6 +81,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Méthode customisée activée au moment où l'utilisateur lâche le doigt de l'écran.
+    /// </summary>
+    /// <param name="finger">Le doigt LeanFinger qui active l'événement</param>
     private void OnFingerUp(LeanFinger finger)
     {
         switch (currentStatus) {
@@ -94,6 +106,9 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Ancre l'objet transparent dans le plan, l'ajoute dans la liste d'objets placés, et lui donne le matériau plein.
+    /// </summary>
     private void PlaceNewObject()
     {
         transparentObject.GetComponentInChildren<MeshRenderer>().material = arController.GetFullMaterial();
@@ -102,6 +117,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         transparentObject = null;
     }
 
+    /// <summary>
+    /// Appelé à chaque Update de Vuforia, afin de déplacer l'objet transparent et de réorienter les canvas sur chaque objet placé vers la caméra.
+    /// </summary>
+    /// <param name="hitTestResult">Performed hit test in the world.</param>
     public void MoveObjects(HitTestResult hitTestResult)
     {
         if (spawnedAnchorBehaviour == null)
@@ -132,6 +151,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Instantie un nouveau objet transparent, et place la scène en mode NEW_OBJECT_MODE. L'objet transparent suit le HitTest automatique de Vuforia.
+    /// </summary>
+    /// <param name="newObject">Le Nouvel objet à placer en transparence.</param>
     public void SetTransparentObject(GameObject newObject)
     {
         if (transparentObject != null)
@@ -148,24 +171,40 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
             transparentObject.transform.parent = spawnedAnchorBehaviour.transform;
     }
 
+    /// <summary>
+    /// Sélectionne un objet à déplacer, et place l'application en mode MOVEMENT_MODE.
+    /// </summary>
+    /// <param name="furniture">L'objet placé à déplacer.</param>
     public void MovePlacedFurniture(GameObject furniture)
     {
         activeObject = furniture;
         ChangeStatus(ARStatus.MOVEMENT_MODE);
     }
 
+    /// <summary>
+    /// Sélectionne un objet à tourner, et place l'application en mode ROTATE_MODE.
+    /// </summary>
+    /// <param name="furniture">L'objet placé à tourner.</param>
     public void RotatePlacedFurniture(GameObject furniture)
     {
         activeObject = furniture;
         ChangeStatus(ARStatus.ROTATE_MODE);
     }
 
+    /// <summary>
+    /// Sélectionne un objet à supprimer.
+    /// </summary>
+    /// <param name="furniture">L'objet placé à supprimer.</param>
     public void DeletePlacedObject(GameObject furniture)
     {
         placedObjects.Remove(furniture);
         Destroy(furniture);
     }
 
+    /// <summary>
+    /// Permet de changer le status de la scène de Réalité Augmentée, ce qui change les intéractions de l'utilisateur avec l'écran.
+    /// </summary>
+    /// <param name="newStatus">Le nouveau status de réalité augmentée. IDLE_MODE pour normal, NEW_OBJECT_MODE pour quand l'utilisateur compte placer un nouvel objet, MOVEMENT_MODE pour quand un objet placé doit être déplacé, et ROTATE_MODE pour quand un objet placé doit être tourné.</param>
     private async void ChangeStatus(ARStatus newStatus)
     {
         List<GameObject> furnitureUIs = new List<GameObject>();
@@ -194,6 +233,10 @@ public class CustomContentPositioningBehaviour : VuforiaMonoBehaviour
         currentStatus = newStatus;
     }
 
+    /// <summary>
+    /// Retourne la liste d'objets placés dans la scène.
+    /// </summary>
+    /// <returns></returns>
     public static List<GameObject> GetPlacedObjects()
     {
         return placedObjects;

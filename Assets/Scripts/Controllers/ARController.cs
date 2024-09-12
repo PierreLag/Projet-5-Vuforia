@@ -29,16 +29,28 @@ public class ARController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Place l'objet à l'index entré dans la scène.
+    /// </summary>
+    /// <param name="index">L'index de l'objet à placer, selon la liste objectsToPlace paramétrée dans l'éditeur.</param>
     public void ShowTransparentFurniture(int index)
     {
         customContentPositioning.SetTransparentObject(objectsToPlace[index]);
     }
 
+    /// <summary>
+    /// Retourne le matériau plein à appliquer dans les objets placés.
+    /// </summary>
+    /// <returns>Le matériau plein des objets à placer.</returns>
     public Material GetFullMaterial()
     {
         return fullMaterial;
     }
 
+    /// <summary>
+    /// Retourne le matériau transparent à appliquer dans les objets placés.
+    /// </summary>
+    /// <returns>Le matériau transparent des objets à placer.</returns>
     public Material GetTransparentMaterial()
     {
         return transparentMaterial;

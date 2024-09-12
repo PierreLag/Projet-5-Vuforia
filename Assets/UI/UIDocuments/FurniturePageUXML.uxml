@@ -4,6 +4,7 @@
     <ui:VisualElement name="Background" style="flex-grow: 1;">
         <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
             <ui:Label tabindex="-1" text="FurnitureName" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="IkeAR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppName" />
         </ui:VisualElement>
         <ui:VisualElement name="AccountArea" style="flex-grow: 1; max-height: 8%; height: 5%; min-height: 120px; flex-direction: row-reverse; align-items: center; background-color: rgb(238, 238, 238);">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
