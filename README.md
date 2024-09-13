@@ -59,3 +59,6 @@ Enfin, l'utilisateur peut prendre tous les objets placés dans la scène, et les
 
 # Téléchargement
 Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.google.com/file/d/1rPx0OG6IntzfHpty_uPYOCqTAroZmklS/view?usp=sharing).
+
+# Note
+Si vous téléchargez le projet Unity en lui-même, vous risquez de rencontrer une erreur, causée par le manque d'un fichier qui est bien trop large pour pouvoir être inclus dans le repository Github. Le fichier en question peut être téléchargé avec [ce lien ci](https://drive.google.com/file/d/1hmGrSk40-OTc45cAcZSkU2HGcU2mP-4a/view?usp=drive_link), et doit être placé dans le dossier Packages/.
