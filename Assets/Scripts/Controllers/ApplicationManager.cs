@@ -62,4 +62,9 @@ public class ApplicationManager : MonoBehaviour
         DisableARTestScene();
         NavigationUIController.FromARToCartWithItems(placedFurniture);
     }
+
+    public static void UpdateAllFurnitures()
+    {
+
+    }
 }
