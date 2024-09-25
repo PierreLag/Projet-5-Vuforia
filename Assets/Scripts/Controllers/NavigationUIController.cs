@@ -98,10 +98,10 @@ public class NavigationUIController : MonoBehaviour
                 newRoot.Q<Button>("ARTestButton").clicked += GoToARTest;
                 break;
             case 1:
-                CatalogueSO allFurnitures = ApplicationManager.GetFurnitureList();
+                List<Furniture> allFurnitures = APIController.GetAllFurnitures().Current;   // À remplacer
                 ScrollView scrollView = newRoot.Q<ScrollView>("FurnitureSelection");
 
-                foreach (FurnitureSO furniture in allFurnitures.furnitures)
+                foreach (Furniture furniture in allFurnitures)
                 {
                     Button furnitureDisplay = furnitureNavigationTemplate.CloneTree().Q<Button>(null, new string[] { "FurnitureDisplay", "navigation-button" });
 
@@ -110,7 +110,7 @@ public class NavigationUIController : MonoBehaviour
                     furnitureDisplay.Q<Label>(className: "FurnitureDescription").text = furniture.description;
                     furnitureDisplay.Q<Label>(className: "FurniturePrice").text = furniture.price.ToString() + " €";
 
-                    furnitureDisplay.clicked += () => GoToFurnitureDetails(furniture);
+                    //furnitureDisplay.clicked += () => GoToFurnitureDetails(furniture);
 
                     scrollView.contentViewport.Add(furnitureDisplay);
                 }
