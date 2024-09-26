@@ -6,13 +6,22 @@ using System.Threading.Tasks;
 
 public class APIController : MonoBehaviour
 {
+    private static object latestResponse;
+    static APIController _this;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        if (_this != null)
+            Destroy(this);
+        else
+        {
+            _this = this;
+            DontDestroyOnLoad(this);
+        }
     }
 
-    public static IEnumerator<List<Furniture>> GetAllFurnitures()
+    public static IEnumerator GetAllFurnitures()
     {
         UnityWebRequest apiRequest = UnityWebRequest.Get("http://localhost/MYG/ikear/GetAllFurnitures.php");
         apiRequest.SendWebRequest();
@@ -35,7 +44,17 @@ public class APIController : MonoBehaviour
                 break;
         }
 
-        yield return response;
+        latestResponse = response;
+    }
+
+    public static void ResetResponse()
+    {
+        latestResponse = null;
+    }
+
+    public static object GetResponse()
+    {
+        return latestResponse;
     }
 
     public FurnitureSO ToScriptableObject(Furniture furniture)
@@ -47,8 +66,15 @@ public class APIController : MonoBehaviour
         furnitureSO.height = furniture.y;
         furnitureSO.width = furniture.z;
         furnitureSO.price = furniture.price;
+        furnitureSO.category = furniture.categoryName;
 
-        Coroutine spriteCoroutine = StartCoroutine(furniture.GetSprite());
+        StartCoroutine(furniture.GetSprite());
+
+        float timer = 0f;
+        while (furniture.preview == null || timer <= 2f)
+        {
+            timer += Time.deltaTime;
+        }
         furnitureSO.preview = furniture.preview;
 
         return furnitureSO;

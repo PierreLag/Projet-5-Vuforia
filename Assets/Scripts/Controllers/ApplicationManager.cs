@@ -65,6 +65,20 @@ public class ApplicationManager : MonoBehaviour
 
     public static void UpdateAllFurnitures()
     {
+        _this.StartCoroutine(APIController.GetAllFurnitures());
 
+        float timer = 0f;
+        while (APIController.GetResponse() == null || timer <= 2f)
+        {
+            timer += Time.deltaTime;
+        }
+
+        List<Furniture> furnitures = (List<Furniture>)APIController.GetResponse();
+        APIController.ResetResponse();
+
+        if (furnitures != null)
+        {
+
+        }
     }
 }
