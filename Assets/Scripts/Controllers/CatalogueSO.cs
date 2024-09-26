@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "IkeAR/CatalogueSO")]
 public class CatalogueSO : ScriptableObject
 {
-    public List<FurnitureSO> furnitures;
+    public FurnitureSO[] furnitures;
 }
