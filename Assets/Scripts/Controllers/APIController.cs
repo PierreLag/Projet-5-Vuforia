@@ -45,6 +45,8 @@ public class APIController : MonoBehaviour
         }
 
         latestResponse = response;
+
+        Debug.Log("All Furnitures obtained and put in latest response");
     }
 
     public static void ResetResponse()
@@ -57,7 +59,7 @@ public class APIController : MonoBehaviour
         return latestResponse;
     }
 
-    public FurnitureSO ToScriptableObject(Furniture furniture)
+    public async Task<FurnitureSO> ToScriptableObject(Furniture furniture)
     {
         FurnitureSO furnitureSO = new FurnitureSO();
         furnitureSO.name = furniture.name;
@@ -70,10 +72,11 @@ public class APIController : MonoBehaviour
 
         StartCoroutine(furniture.GetSprite());
 
-        float timer = 0f;
-        while (furniture.preview == null || timer <= 2f)
+        int timesWaiting = 0;
+        while (furniture.preview == null && timesWaiting <= 4)
         {
-            timer += Time.deltaTime;
+            await Task.Delay(100);
+            timesWaiting++;
         }
         furnitureSO.preview = furniture.preview;
 

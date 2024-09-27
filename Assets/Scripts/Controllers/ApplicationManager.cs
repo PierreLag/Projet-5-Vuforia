@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 public class ApplicationManager : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ApplicationManager : MonoBehaviour
 
     [SerializeField]
     CatalogueSO allFurnituresCatalogue;
+    [SerializeField]
+    APIController apiController;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,22 +66,35 @@ public class ApplicationManager : MonoBehaviour
         NavigationUIController.FromARToCartWithItems(placedFurniture);
     }
 
-    public static void UpdateAllFurnitures()
+    public static async Task UpdateAllFurnitures()
     {
         _this.StartCoroutine(APIController.GetAllFurnitures());
 
-        float timer = 0f;
-        while (APIController.GetResponse() == null || timer <= 2f)
+        int timesWaiting = 0;
+        object response = null;
+        while (response == null && timesWaiting <= 4)
         {
-            timer += Time.deltaTime;
+            await Task.Delay(100);
+            response = APIController.GetResponse();
+            timesWaiting++;
         }
+        Debug.Log("Is Response null ? " + (response == null ? "Yes" : "No"));
 
-        List<Furniture> furnitures = (List<Furniture>)APIController.GetResponse();
+        List<Furniture> furnitures = (List<Furniture>)response;
         APIController.ResetResponse();
 
         if (furnitures != null)
         {
-
+            _this.allFurnituresCatalogue.furnitures.Clear();
+            foreach (Furniture furniture in furnitures)
+            {
+                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furniture);
+                await castingTask;
+                _this.allFurnituresCatalogue.furnitures.Add((FurnitureSO)castingTask.Result);
+                Debug.Log(castingTask.Result);
+            }
         }
+
+        Debug.Log("New catalogue of all furnitures : " + string.Join(", ", _this.allFurnituresCatalogue.furnitures));
     }
 }

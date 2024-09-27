@@ -15,6 +15,7 @@
             <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="FurnitureDetails">
                 <ui:VisualElement name="Preview" style="flex-grow: 1;" />
                 <ui:Label tabindex="-1" text="Dimensions :" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Dimensions" />
+                <ui:Label tabindex="-1" text="Categorie" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Category" />
                 <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Description" />
             </ui:ScrollView>
             <ui:VisualElement name="PurchaseBox" style="flex-grow: 1; align-items: flex-end;">

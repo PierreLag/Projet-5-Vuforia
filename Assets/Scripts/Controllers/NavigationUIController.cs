@@ -74,7 +74,7 @@ public class NavigationUIController : MonoBehaviour
     /// </summary>
     /// <param name="newPage">Le nouveau document à charger.</param>
     /// <param name="addHistory">True si la page d'origine devrait être ajoutée à l'historique de navigation, false sinon.</param>
-    private void ChangeNavigationDocument(UIDocument newPage, bool addHistory)
+    private async void ChangeNavigationDocument(UIDocument newPage, bool addHistory)
     {
         HideQuickNavigation();
         newPage.gameObject.SetActive(true);
@@ -98,6 +98,7 @@ public class NavigationUIController : MonoBehaviour
                 newRoot.Q<Button>("ARTestButton").clicked += GoToARTest;
                 break;
             case 1:
+                await ApplicationManager.UpdateAllFurnitures();
                 CatalogueSO allFurnitures = ApplicationManager.GetFurnitureList();
                 ScrollView scrollView = newRoot.Q<ScrollView>("FurnitureSelection");
 
@@ -119,6 +120,7 @@ public class NavigationUIController : MonoBehaviour
                 newRoot.Q<VisualElement>("TitleContainer").Q<Label>().text = displayedFurniture.name;
                 newRoot.Q<VisualElement>("Preview").style.backgroundImage = new StyleBackground(displayedFurniture.preview);
                 newRoot.Q<Label>("Dimensions").text = "Dimensions : " + displayedFurniture.width + "m x " + displayedFurniture.length + "m x " + displayedFurniture.height + "m";
+                newRoot.Q<Label>("Category").text = "Catégorie : " + displayedFurniture.category;
                 newRoot.Q<Label>("Description").text = displayedFurniture.description;
                 newRoot.Q<Label>("PriceTag").text = "Prix : " + displayedFurniture.price + " €";
 

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 [System.Serializable]
 public class Furniture
@@ -24,7 +26,11 @@ public class Furniture
 
     public static List<Furniture> ListFromJSON(string json)
     {
-        return JsonUtility.FromJson<List<Furniture>>(json);
+        Debug.Log("JSON input in ListFromJSON : " + json);
+        JArray jfurnitures = JArray.Parse(json);
+        List<Furniture> furnitures = jfurnitures.ToObject<List<Furniture>>();
+
+        return furnitures;
     }
 
     public Vector3 GetDimensionsV3()

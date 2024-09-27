@@ -13,4 +13,21 @@ public class FurnitureSO : ScriptableObject
     public float price;
     public Sprite preview;
     public string category;
+
+    public override string ToString()
+    {
+        return name + ", " + description + ", " + width + "m x " + length + "m x " + height + "m, " + price + "€, catégorie : " + category;
+    }
+
+    public void UpdateFromRuntime(FurnitureSO runtimeFurniture)
+    {
+        name = runtimeFurniture.name;
+        description = runtimeFurniture.description;
+        width = runtimeFurniture.width;
+        length = runtimeFurniture.length;
+        height = runtimeFurniture.height;
+        price = runtimeFurniture.price;
+        preview = runtimeFurniture.preview;
+        category = runtimeFurniture.category;
+    }
 }

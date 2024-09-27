@@ -17,6 +17,11 @@
     margin-bottom: 20px;
 }
 
+#Category {
+    font-size: 50px;
+    margin-bottom: 30px;
+}
+
 #Description {
     font-size: 45px;
     white-space: normal;
