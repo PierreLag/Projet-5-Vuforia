@@ -85,16 +85,27 @@ public class ApplicationManager : MonoBehaviour
 
         if (furnitures != null)
         {
-            _this.allFurnituresCatalogue.furnitures.Clear();
+            /*_this.allFurnituresCatalogue.furnitures.Clear();
             foreach (Furniture furniture in furnitures)
             {
                 Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furniture);
                 await castingTask;
                 _this.allFurnituresCatalogue.furnitures.Add((FurnitureSO)castingTask.Result);
                 Debug.Log(castingTask.Result);
+            }*/
+            int i = 0;
+            for (i = 0; i < _this.allFurnituresCatalogue.furnitures.Count && i < furnitures.Count; i++)
+            {
+                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furnitures[i]);
+                await castingTask;
+                _this.allFurnituresCatalogue.furnitures[i].UpdateFromRuntime(castingTask.Result);
+            }
+            for (i = i; i < furnitures.Count; i++)
+            {
+                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furnitures[i]);
+                await castingTask;
+                _this.allFurnituresCatalogue.furnitures.Add(castingTask.Result);
             }
         }
-
-        Debug.Log("New catalogue of all furnitures : " + string.Join(", ", _this.allFurnituresCatalogue.furnitures));
     }
 }

@@ -26,7 +26,6 @@ public class Furniture
 
     public static List<Furniture> ListFromJSON(string json)
     {
-        Debug.Log("JSON input in ListFromJSON : " + json);
         JArray jfurnitures = JArray.Parse(json);
         List<Furniture> furnitures = jfurnitures.ToObject<List<Furniture>>();
 

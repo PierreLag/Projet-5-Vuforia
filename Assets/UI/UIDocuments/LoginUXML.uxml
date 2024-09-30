@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/USS/GlobalUSS.uss?fileID=7433441132597879392&amp;guid=80173d77144b2724cb51949957ce8a86&amp;type=3#GlobalUSS" />
+    <Style src="project://database/Assets/UI/USS/LoginUSS.uss?fileID=7433441132597879392&amp;guid=9afc9ebedfa463244a0e566bfa014d0a&amp;type=3#LoginUSS" />
+    <ui:VisualElement name="Background" style="flex-grow: 1;">
+        <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Accueil" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="IkeAR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppName" />
+        </ui:VisualElement>
+        <ui:VisualElement name="AccountArea" style="background-color: rgb(238, 238, 238);">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
+            <ui:Label tabindex="-1" text="Username" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
+            <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Content" style="flex-grow: 1;">
+            <ui:VisualElement name="ProfilePicture" style="flex-grow: 1;" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Footer" style="flex-grow: 1;">
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="HomeButton" />
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuickMenuButton" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

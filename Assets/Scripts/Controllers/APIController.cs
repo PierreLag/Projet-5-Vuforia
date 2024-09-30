@@ -45,8 +45,6 @@ public class APIController : MonoBehaviour
         }
 
         latestResponse = response;
-
-        Debug.Log("All Furnitures obtained and put in latest response");
     }
 
     public static void ResetResponse()

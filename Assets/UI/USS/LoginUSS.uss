@@ -1,0 +1,9 @@
+#ProfilePicture {
+    width: 240px;
+    height: 240px;
+    max-height: 240px;
+    align-self: center;
+}
+
+#Username {
+}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AllFurnitures
   m_EditorClassIdentifier: 
   furnitures:
-  - {fileID: 11400000, guid: 22b0e08c82c57fc46bf77180af0187fb, type: 2}
-  - {fileID: 11400000, guid: 9ac60759ef650894dbd61d8f8d6d80ab, type: 2}
   - {fileID: 11400000, guid: da6a5c752bb007f42a93662717bfa2c4, type: 2}
+  - {fileID: 11400000, guid: 9ac60759ef650894dbd61d8f8d6d80ab, type: 2}
+  - {fileID: 11400000, guid: 22b0e08c82c57fc46bf77180af0187fb, type: 2}
