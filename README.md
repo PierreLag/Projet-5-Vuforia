@@ -1,6 +1,9 @@
 # Projet 5 : Vuforia
  Voici le projet 5 de la formation Unity XR de MakeYourGame. Le but de ce projet est de créer une application du même style que Ikea, où l'utilisateur peut visualiser des produits mobiliers, les examiner dans un magasin, et les ajouter dans un panier.
 
+# Téléchargement
+Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.google.com/file/d/1rPx0OG6IntzfHpty_uPYOCqTAroZmklS/view?usp=sharing).
+
 # Interface
 ## Accueil
  L'utilisateur, lorsqu'il lance l'application, est accueilli par la page d'accueil de l'application.
@@ -56,9 +59,6 @@ L'utilisateur a aussi l'option de retirer un meuble de la scène en appuyant sur
 Enfin, l'utilisateur peut prendre tous les objets placés dans la scène, et les ajoute dans leur panier afin d'être acheté plus tard.
 
 <img src=https://github.com/user-attachments/assets/055d4d8e-0d1c-4515-9140-916ea939cf19 width=270 height=600 margin=auto>
-
-# Téléchargement
-Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.google.com/file/d/1rPx0OG6IntzfHpty_uPYOCqTAroZmklS/view?usp=sharing).
 
 # Note
 Si vous téléchargez le projet Unity en lui-même, vous risquez de rencontrer une erreur, causée par le manque d'un fichier qui est bien trop large pour pouvoir être inclus dans le repository Github. Le fichier en question peut être téléchargé avec [ce lien ci](https://drive.google.com/file/d/1hmGrSk40-OTc45cAcZSkU2HGcU2mP-4a/view?usp=drive_link), et doit être placé dans le dossier Packages/.
