@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/GlobalUSS.uss?fileID=7433441132597879392&amp;guid=80173d77144b2724cb51949957ce8a86&amp;type=3#GlobalUSS" />
-    <Style src="project://database/Assets/UI/USS/LoginUSS.uss?fileID=7433441132597879392&amp;guid=9afc9ebedfa463244a0e566bfa014d0a&amp;type=3#LoginUSS" />
+    <Style src="project://database/Assets/UI/USS/CreateAccountUSS.uss?fileID=7433441132597879392&amp;guid=f7ff7e22fab70f24f8497310b29d0509&amp;type=3#CreateAccountUSS" />
     <ui:VisualElement name="Background" style="flex-grow: 1;">
         <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
             <ui:Label tabindex="-1" text="Accueil" parse-escape-sequences="true" display-tooltip-when-elided="true" />
@@ -12,10 +12,11 @@
             <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Connectez-vous" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginTitle" />
+            <ui:Label tabindex="-1" text="Créez votre compte" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginTitle" />
             <ui:TextField picking-mode="Ignore" label="Nom d&apos;utilisateur" name="Username" />
             <ui:TextField picking-mode="Ignore" label="Mot de passe" name="Password" password="true" />
-            <ui:Button text="Pas de compte ? Créer un compte ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccount" />
+            <ui:TextField picking-mode="Ignore" label="Confirmez\nmot de passe" name="ConfirmPassword" password="true" />
+            <ui:Button text="Déjà un compte ? Connectez-vous ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />
