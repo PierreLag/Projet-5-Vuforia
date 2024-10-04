@@ -47,6 +47,11 @@
 
 #AccountArea > #Username {
     font-size: 50px;
+    display: none;
+}
+
+#Pfp {
+    display: none;
 }
 
 #NoAccount {
@@ -59,7 +64,8 @@
     max-width: 90%;
     width: 80%;
     min-width: 570px;
-    display: none;
+    display: flex;
+    color: rgb(65, 75, 178);
 }
 
 #Content {

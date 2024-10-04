@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Threading.Tasks;
+using System;
 
 public class APIController : MonoBehaviour
 {
@@ -79,5 +80,69 @@ public class APIController : MonoBehaviour
         furnitureSO.preview = furniture.preview;
 
         return furnitureSO;
+    }
+
+    public static IEnumerator Login(string username, string password)
+    {
+        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+
+        formData.Add(new MultipartFormDataSection("login", username));
+        formData.Add(new MultipartFormDataSection("password", password));
+
+        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/Login.php", formData);
+        yield return apiRequest.SendWebRequest();
+
+        switch (apiRequest.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+                latestResponse = "Connection error";
+                break;
+            case UnityWebRequest.Result.Success:
+                string userJSON = apiRequest.downloadHandler.text;
+                Debug.Log("Login JSON : " + userJSON);
+                if (userJSON == "")
+                {
+                    latestResponse = "Login mismatch";
+                } else
+                {
+                    ApplicationManager.SetUser(User.FromJSON(userJSON));
+                    latestResponse = "Success";
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public static IEnumerator CreateAccount(string username, string password)
+    {
+        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+
+        formData.Add(new MultipartFormDataSection("login", username));
+        formData.Add(new MultipartFormDataSection("password", password));
+        Debug.Log("Post form prepared for sending");
+
+        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/AddUser.php", formData);
+        yield return apiRequest.SendWebRequest();
+        Debug.Log("Request ongoing");
+
+        if (apiRequest.downloadHandler.text.Contains("Error :"))
+        {
+            if (apiRequest.downloadHandler.text == "Error : Connection to server failed.")
+            {
+                latestResponse = "Connection error";
+            }
+            if (apiRequest.downloadHandler.text == "Error : User already exists.")
+            {
+                latestResponse = "Already existing user";
+            }
+        }
+        else
+        {
+            ApplicationManager.SetUser(new User(username));
+            latestResponse = "Success";
+        }
+
+        latestResponse = apiRequest.result;
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 public class ApplicationManager : MonoBehaviour
 {
     private static ApplicationManager _this;
+    private static User user;
 
     [SerializeField]
     CatalogueSO allFurnituresCatalogue;
@@ -85,14 +86,6 @@ public class ApplicationManager : MonoBehaviour
 
         if (furnitures != null)
         {
-            /*_this.allFurnituresCatalogue.furnitures.Clear();
-            foreach (Furniture furniture in furnitures)
-            {
-                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furniture);
-                await castingTask;
-                _this.allFurnituresCatalogue.furnitures.Add((FurnitureSO)castingTask.Result);
-                Debug.Log(castingTask.Result);
-            }*/
             int i = 0;
             for (i = 0; i < _this.allFurnituresCatalogue.furnitures.Count && i < furnitures.Count; i++)
             {
@@ -100,12 +93,28 @@ public class ApplicationManager : MonoBehaviour
                 await castingTask;
                 _this.allFurnituresCatalogue.furnitures[i].UpdateFromRuntime(castingTask.Result);
             }
-            for (i = i; i < furnitures.Count; i++)
+            for (int j = i; j < furnitures.Count; j++)
             {
-                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furnitures[i]);
+                Task<FurnitureSO> castingTask = _this.apiController.ToScriptableObject(furnitures[j]);
                 await castingTask;
                 _this.allFurnituresCatalogue.furnitures.Add(castingTask.Result);
             }
         }
+    }
+
+    public static void SetUser(User user)
+    {
+        ApplicationManager.user = user;
+    }
+
+    public static User GetUser()
+    {
+        return user;
+    }
+
+    public static void Disconnect()
+    {
+        user = null;
+        NavigationUIController.GetThis().GoToHome();
     }
 }

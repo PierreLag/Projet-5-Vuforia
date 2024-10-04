@@ -1,4 +1,4 @@
-#LoginTitle {
+#CreateAccTitle {
     font-size: 80px;
     -unity-text-align: upper-center;
     margin-bottom: 60px;
@@ -13,7 +13,14 @@
     width: 40%;
 }
 
-#CreateAccount {
+#ErrorText {
+    font-size: 40px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    color: rgb(245, 6, 6);
+}
+
+#Login {
     background-color: rgba(0, 0, 0, 0);
     border-left-color: rgba(0, 0, 0, 0);
     border-right-color: rgba(0, 0, 0, 0);
@@ -24,4 +31,9 @@
     color: rgb(26, 67, 224);
     -unity-text-align: upper-center;
     -unity-font-style: bold;
+}
+
+#CreateButton {
+    height: 100px;
+    font-size: 50px;
 }

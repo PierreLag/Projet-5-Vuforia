@@ -12,11 +12,13 @@
             <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Créez votre compte" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginTitle" />
-            <ui:TextField picking-mode="Ignore" label="Nom d&apos;utilisateur" name="Username" />
+            <ui:Label tabindex="-1" text="Créez votre compte" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccTitle" />
+            <ui:TextField picking-mode="Ignore" label="Nom d&apos;utilisateur" name="UsernameField" max-length="30" />
             <ui:TextField picking-mode="Ignore" label="Mot de passe" name="Password" password="true" />
             <ui:TextField picking-mode="Ignore" label="Confirmez\nmot de passe" name="ConfirmPassword" password="true" />
-            <ui:Button text="Déjà un compte ? Connectez-vous ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccount" />
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ErrorText" />
+            <ui:Button text="Déjà un compte ? Connectez-vous ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Login" />
+            <ui:Button text="Créer mon compte" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateButton" class="navigation-button" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />

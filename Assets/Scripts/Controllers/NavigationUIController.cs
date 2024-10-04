@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
+using System.Threading.Tasks;
 
 public class NavigationUIController : MonoBehaviour
 {
@@ -18,7 +19,6 @@ public class NavigationUIController : MonoBehaviour
     static NavigationUIController _this;
     static UIDocument currentDocument;
 
-    ApplicationManager manager;
     List<UIDocument> documentHistory;
     FurnitureSO displayedFurniture;
     Dictionary<FurnitureSO, int> userCart;
@@ -38,7 +38,6 @@ public class NavigationUIController : MonoBehaviour
     void Start()
     {
         currentDocument = documentsReferences[0];
-        manager = GameObject.FindObjectOfType<ApplicationManager>();
         documentHistory = new List<UIDocument>();
         userCart = new Dictionary<FurnitureSO, int>();
 
@@ -47,6 +46,12 @@ public class NavigationUIController : MonoBehaviour
         docRoot.Q<Button>("QuickMenuButton").clicked += ShowQuickNavigation;
         docRoot.Q<Button>("ShopButton").clicked += GoToShop;
         docRoot.Q<Button>("ARTestButton").clicked += GoToARTest;
+
+        if (ApplicationManager.GetUser() == null)
+        {
+            docRoot.Q<Button>("NoAccount").clicked += GoToLogin;
+        }
+
     }
 
     /// <summary>
@@ -83,6 +88,19 @@ public class NavigationUIController : MonoBehaviour
         newRoot.Q<Button>("BackButton").clicked += GoBack;
         newRoot.Q<Button>("HomeButton").clicked += GoToHome;
         newRoot.Q<Button>("QuickMenuButton").clicked += ShowQuickNavigation;
+        
+        if (ApplicationManager.GetUser() == null)
+        {
+            newRoot.Q<Button>("NoAccount").clicked += GoToLogin;
+        }
+        else
+        {
+            Debug.Log(ApplicationManager.GetUser());
+            newRoot.Q<Button>("NoAccount").style.display = new StyleEnum<DisplayStyle>(DisplayStyle.None);
+            newRoot.Q<Button>("Pfp").style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+            newRoot.Q<Label>("Username").style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+            newRoot.Q<Label>("Username").text = ApplicationManager.GetUser().GetUsername();
+        }
 
         if (addHistory)
             documentHistory.Add(currentDocument);
@@ -130,6 +148,14 @@ public class NavigationUIController : MonoBehaviour
             case 3:
                 DrawCartScrollView();
                 break;
+            case 5:
+                newRoot.Q<Button>("LoginButton").clicked += AttemptLogin;
+                newRoot.Q<Button>("CreateAccount").clicked += GoToCreateAccount;
+                break;
+            case 6:
+                newRoot.Q<Button>("CreateButton").clicked += AttemptCreate;
+                newRoot.Q<Button>("Login").clicked += GoToLogin;
+                break;
             default:
                 break;
         }
@@ -138,7 +164,7 @@ public class NavigationUIController : MonoBehaviour
     /// <summary>
     /// Cette méthode charge la page d'accueil de l'application, et ajoute la page d'origine dans l'historique de navigation.
     /// </summary>
-    private void GoToHome()
+    public void GoToHome()
     {
         if (currentDocument != documentsReferences[0])
             ChangeNavigationDocument(documentsReferences[0], true);
@@ -312,5 +338,110 @@ public class NavigationUIController : MonoBehaviour
         }
 
         _this.GoToCart();
+    }
+
+    public static NavigationUIController GetThis()
+    {
+        return _this;
+    }
+
+    private void GoToLogin()
+    {
+        ChangeNavigationDocument(documentsReferences[5], true);
+    }
+
+    private void GoToCreateAccount()
+    {
+        ChangeNavigationDocument(documentsReferences[6], true);
+    }
+
+    private async void AttemptLogin()
+    {
+        VisualElement loginRoot = currentDocument.rootVisualElement;
+
+        string username = loginRoot.Q<TextField>("UsernameField").text;
+        string password = loginRoot.Q<TextField>("Password").text;
+
+        Label errorLabel = loginRoot.Q<Label>("ErrorText");
+
+        if (username == "" || password == "")
+        {
+            errorLabel.text = "Veuillez remplir tous les champs";
+        }
+        else
+        {
+            StartCoroutine(APIController.Login(username, password));
+
+            int timesWaiting = 0;
+            while (APIController.GetResponse() == null && timesWaiting <= 4)
+            {
+                await Task.Delay(100);
+                timesWaiting++;
+            }
+
+            string response = (string)APIController.GetResponse();
+            switch (response)
+            {
+                case "Success":
+                    GoToHome();
+                    break;
+                case "Login mismatch":
+                    errorLabel.text = "Identifiant ou mot de passe erroné";
+                    break;
+                case "Connection error":
+                    errorLabel.text = "Erreur de connexion au serveur";
+                    break;
+            }
+
+            APIController.ResetResponse();
+        }
+    }
+
+    private async void AttemptCreate()
+    {
+        VisualElement createRoot = currentDocument.rootVisualElement;
+
+        string username = createRoot.Q<TextField>("UsernameField").text;
+        string password = createRoot.Q<TextField>("Password").text;
+        string confirmPassword = createRoot.Q<TextField>("ConfirmPassword").text;
+
+        Label errorLabel = createRoot.Q<Label>("ErrorText");
+
+        if (username == "" || password == "")
+        {
+            errorLabel.text = "Veuillez remplir tous les champs";
+        }
+        else if (password != confirmPassword)
+        {
+            errorLabel.text = "Mot de passe n'est pas confirmé. Veuillez rentrer le même mot de passe";
+        }
+        else
+        {
+            StartCoroutine(APIController.CreateAccount(username, password));
+
+            int timesWaiting = 0;
+            while (APIController.GetResponse() == null && timesWaiting <= 4)
+            {
+                await Task.Delay(100);
+                timesWaiting++;
+            }
+
+            string response = APIController.GetResponse().ToString();
+            Debug.Log(response);
+            switch (response)
+            {
+                case "Success":
+                    GoToHome();
+                    break;
+                case "Already existing user":
+                    errorLabel.text = "L'utilisateur existe déjà";
+                    break;
+                case "Connection error":
+                    errorLabel.text = "Erreur de connexion au serveur";
+                    break;
+            }
+
+            APIController.ResetResponse();
+        }
     }
 }

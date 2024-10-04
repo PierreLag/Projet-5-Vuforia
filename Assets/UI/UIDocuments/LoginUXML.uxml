@@ -13,9 +13,11 @@
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
             <ui:Label tabindex="-1" text="Connectez-vous" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginTitle" />
-            <ui:TextField picking-mode="Ignore" label="Nom d&apos;utilisateur" name="Username" />
+            <ui:TextField picking-mode="Ignore" label="Identifiant" name="UsernameField" max-length="30" />
             <ui:TextField picking-mode="Ignore" label="Mot de passe" name="Password" password="true" />
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ErrorText" />
             <ui:Button text="Pas de compte ? Créer un compte ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccount" />
+            <ui:Button text="Connexion" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginButton" class="navigation-button" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />
