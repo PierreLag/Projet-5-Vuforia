@@ -1,5 +1,26 @@
-# Projet 5 : Vuforia
- Voici le projet 5 de la formation Unity XR de MakeYourGame. Le but de ce projet est de créer une application du même style que Ikea, où l'utilisateur peut visualiser des produits mobiliers, les examiner dans un magasin, et les ajouter dans un panier.
+# Projet 6 : Vuforia avec API maison et base de données
+ Voici le projet 6 de la formation Unity XR de MakeYourGame. Le but de ce projet est de reprendre l'application créée dans le cadre du projet 5, et d'y ajouter une couche d'appels en API conçus à la main, et hébergés sur un serveur local MAMP.
+
+# Téléchargement
+Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.google.com/file/d/14FTTjKXGNXAHL43ngOuITiRbeW1un7Ta/view?usp=sharing).
+
+# Installation du projet en local
+## Fichier trop volumineux
+Si vous téléchargez le projet Unity en lui-même, vous risquez de rencontrer une erreur, causée par le manque d'un fichier qui est bien trop large pour pouvoir être inclus dans le repository Github. Le fichier en question peut être téléchargé avec [ce lien ci](https://drive.google.com/file/d/1hmGrSk40-OTc45cAcZSkU2HGcU2mP-4a/view?usp=drive_link), et doit être placé dans le dossier Packages/.
+
+## Installation serveur local
+Pour que l'application fonctionne correctement, un serveur local doit être hébergé. Pour se faire, une application de type MAMP ou XAMP doit être utilisée. Voici comment installer le serveur avec MAMP :
+- Téléchargez et installez MAMP [ici](https://www.mamp.info/en/windows/).
+- Accédez au dossier MAMP dans votre disque local C (ou dans l'emplacement d'installation de votre choix).
+- Allez dans le dossier htdocs.
+- Extrayez ce dossier compressé [ici](https://drive.google.com/file/d/13o4lANSJdffc-EaUeLSjUC51a7JsmN91/view?usp=sharing).
+- Démarrez MAMP, et activez le serveur.
+
+Une fois cela fait, il ne vous reste qu'à créer la base de données qui va stocker les données de l'application.
+
+Pour cela, dans l'application MAMP, cliquez sur "Open WebStart Page", puis sur la fenêtre qui s'affiche, allez dans "TOOLS" en haut de page, puis "PHPMYADMIN". Ensuite, sur cette nouvelle page, créez une nouvelle base de données nommée "ikear". Après cela, il vous suffit de cliquer sur l'ongler "Import", et d'y insérer [ce fichier là](https://drive.google.com/file/d/1JGGFO8X0DzNgdlEZuzJLGrq6ae6lbp0V/view?usp=sharing). Lancez le script, et voilà, la base de données s'est générée.
+
+À noter que par défaut, un utilisateur administrateur existe, avec l'identifiant "admin" et le mot de passe "admin".
 
 # Interface
 ## Accueil
@@ -56,9 +77,6 @@ L'utilisateur a aussi l'option de retirer un meuble de la scène en appuyant sur
 Enfin, l'utilisateur peut prendre tous les objets placés dans la scène, et les ajoute dans leur panier afin d'être acheté plus tard.
 
 <img src=https://github.com/user-attachments/assets/055d4d8e-0d1c-4515-9140-916ea939cf19 width=270 height=600 margin=auto>
-
-# Téléchargement
-Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.google.com/file/d/1rPx0OG6IntzfHpty_uPYOCqTAroZmklS/view?usp=sharing).
 
 # Note
 Si vous téléchargez le projet Unity en lui-même, vous risquez de rencontrer une erreur, causée par le manque d'un fichier qui est bien trop large pour pouvoir être inclus dans le repository Github. Le fichier en question peut être téléchargé avec [ce lien ci](https://drive.google.com/file/d/1hmGrSk40-OTc45cAcZSkU2HGcU2mP-4a/view?usp=drive_link), et doit être placé dans le dossier Packages/.
