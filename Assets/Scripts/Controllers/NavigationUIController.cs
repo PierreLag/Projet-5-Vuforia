@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor;
 using System.Threading.Tasks;
+using System.Linq;
 
 public class NavigationUIController : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class NavigationUIController : MonoBehaviour
     VisualTreeAsset furnitureNavigationTemplate;
     [SerializeField]
     VisualTreeAsset cartFurnitureDisplayTemplate;
+    [SerializeField]
+    VisualTreeAsset adminFurnitureDisplayTemplate;
     [SerializeField]
     Camera navigationCamera;
 
@@ -155,6 +158,27 @@ public class NavigationUIController : MonoBehaviour
             case 6:
                 newRoot.Q<Button>("CreateButton").clicked += AttemptCreate;
                 newRoot.Q<Button>("Login").clicked += GoToLogin;
+                break;
+            case 7:
+                await ApplicationManager.UpdateAllFurnitures();
+                CatalogueSO allFurnituresAdmin = ApplicationManager.GetFurnitureList();
+                ScrollView scrollViewAdmin = newRoot.Q<ScrollView>("FurnitureSelection");
+
+                foreach (FurnitureSO furniture in allFurnituresAdmin.furnitures)
+                {
+                    VisualElement furnitureDisplay = adminFurnitureDisplayTemplate.CloneTree().Q<VisualElement>(null, new string[] { "FurnitureItem" });
+
+                    furnitureDisplay.Q<VisualElement>(className: "FurniturePreview").style.backgroundImage = new StyleBackground(furniture.preview);
+                    furnitureDisplay.Q<Label>(className: "FurnitureName").text = furniture.name;
+
+                    FloatField priceField = furnitureDisplay.Q<FloatField>(className: "Price");
+                    priceField.value = furniture.price;
+                    priceField.keyboardType = TouchScreenKeyboardType.NumbersAndPunctuation;
+
+                    scrollViewAdmin.contentViewport.Add(furnitureDisplay);
+                }
+
+                newRoot.Q<Button>("SubmitUpdate").clicked += UpdatePrices;
                 break;
             default:
                 break;
@@ -311,6 +335,14 @@ public class NavigationUIController : MonoBehaviour
         menuRoot.Q<Button>("ARButton").clicked += GoToARTest;
         menuRoot.Q<Button>("ShopButton").clicked += GoToShop;
         menuRoot.Q<Button>("CartButton").clicked += GoToCart;
+
+        User user = ApplicationManager.GetUser();
+        if (user != null && user.GetRole() == UserRole.ADMIN)
+        {
+            Button adminButton = menuRoot.Q<Button>("AdminButton");
+            adminButton.style.display = new StyleEnum<DisplayStyle>(DisplayStyle.Flex);
+            adminButton.clicked += GoToAdmin;
+        }
     }
 
     /// <summary>
@@ -443,5 +475,54 @@ public class NavigationUIController : MonoBehaviour
 
             APIController.ResetResponse();
         }
+    }
+
+    private void GoToAdmin()
+    {
+        ChangeNavigationDocument(documentsReferences[7], true);
+    }
+
+    private async void UpdatePrices()
+    {
+        ScrollView furnitureDisplay = currentDocument.rootVisualElement.Q<ScrollView>();
+        List<VisualElement> furnitureElements = furnitureDisplay.contentViewport.Children().ToList();
+
+        Label messageLabel = currentDocument.rootVisualElement.Q<Label>("MessageDisplay");
+
+        messageLabel.text = "";
+
+        foreach (VisualElement furniture in furnitureElements)
+        {
+            if (furniture.ClassListContains("FurnitureItem"))
+            {
+                string name = furniture.Q<Label>(className: "FurnitureName").text;
+                float price = furniture.Q<FloatField>().value;
+
+                StartCoroutine(APIController.UpdateFurniturePrice(name, price));
+            }
+        }
+
+        int timesWaiting = 0;
+        object response = APIController.GetResponse();
+        while (response == null || ((int)response < furnitureElements.Count-1 && timesWaiting < 10))
+        {
+            await Task.Delay(100);
+            response = APIController.GetResponse();
+            Debug.Log(response);
+            timesWaiting++;
+        }
+
+        if (timesWaiting < 10)
+        {
+            messageLabel.text = "Prix mis à jour";
+            messageLabel.style.color = Color.blue;
+        }
+        else
+        {
+            messageLabel.text = "Délai long. Possible erreur de connexion";
+            messageLabel.style.color = Color.red;
+        }
+
+        APIController.ResetResponse();
     }
 }

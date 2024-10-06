@@ -1,23 +1,20 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/USS/GlobalUSS.uss?fileID=7433441132597879392&amp;guid=80173d77144b2724cb51949957ce8a86&amp;type=3#GlobalUSS" />
-    <Style src="project://database/Assets/UI/USS/LoginUSS.uss?fileID=7433441132597879392&amp;guid=9afc9ebedfa463244a0e566bfa014d0a&amp;type=3#LoginUSS" />
+    <Style src="project://database/Assets/UI/USS/AdminPricesUSS.uss?fileID=7433441132597879392&amp;guid=cea33df54b70b7d46ab57daa837426c2&amp;type=3#AdminPricesUSS" />
     <ui:VisualElement name="Background" style="flex-grow: 1;">
         <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Connexion" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="Administration" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             <ui:Label tabindex="-1" text="IkeAR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppName" />
         </ui:VisualElement>
-        <ui:VisualElement name="AccountArea" style="background-color: rgb(238, 238, 238);">
+        <ui:VisualElement name="AccountArea" style="flex-grow: 1; max-height: 8%; height: 5%; min-height: 120px; flex-direction: row-reverse; align-items: center; background-color: rgb(238, 238, 238);">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
             <ui:Label tabindex="-1" text="Username" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
             <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Connectez-vous" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginTitle" />
-            <ui:TextField picking-mode="Ignore" label="Identifiant" name="UsernameField" max-length="30" />
-            <ui:TextField picking-mode="Ignore" label="Mot de passe" name="Password" password="true" />
-            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ErrorText" />
-            <ui:Button text="Pas de compte ? Créer un compte ici" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CreateAccount" />
-            <ui:Button text="Connexion" parse-escape-sequences="true" display-tooltip-when-elided="true" name="LoginButton" class="navigation-button" />
+            <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="FurnitureSelection" />
+            <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="MessageDisplay" />
+            <ui:Button text="Mettre à jour les produits" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SubmitUpdate" class="navigation-button" />
         </ui:VisualElement>
         <ui:VisualElement name="Footer" style="flex-grow: 1;">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="BackButton" />

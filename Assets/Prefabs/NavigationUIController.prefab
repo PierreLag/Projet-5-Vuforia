@@ -49,4 +49,6 @@ MonoBehaviour:
     type: 3}
   cartFurnitureDisplayTemplate: {fileID: 9197481963319205126, guid: e2e94f756c49e254d99f757c3d90d39a,
     type: 3}
+  adminFurnitureDisplayTemplate: {fileID: 9197481963319205126, guid: 550b99cdb63333744a9cd693fb240b6d,
+    type: 3}
   navigationCamera: {fileID: 0}

@@ -8,6 +8,7 @@
                 <ui:Button text="Test AR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ARButton" />
                 <ui:Button text="Magasin" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ShopButton" />
                 <ui:Button text="Panier" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CartButton" />
+                <ui:Button text="Administration" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AdminButton" style="display: none;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="InvisibleGoBackButton" />

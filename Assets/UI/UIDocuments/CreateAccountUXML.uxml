@@ -3,7 +3,7 @@
     <Style src="project://database/Assets/UI/USS/CreateAccountUSS.uss?fileID=7433441132597879392&amp;guid=f7ff7e22fab70f24f8497310b29d0509&amp;type=3#CreateAccountUSS" />
     <ui:VisualElement name="Background" style="flex-grow: 1;">
         <ui:VisualElement name="TitleContainer" style="flex-grow: 1;">
-            <ui:Label tabindex="-1" text="Accueil" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+            <ui:Label tabindex="-1" text="Créer un compte" parse-escape-sequences="true" display-tooltip-when-elided="true" />
             <ui:Label tabindex="-1" text="IkeAR" parse-escape-sequences="true" display-tooltip-when-elided="true" name="AppName" />
         </ui:VisualElement>
         <ui:VisualElement name="AccountArea" style="background-color: rgb(238, 238, 238);">

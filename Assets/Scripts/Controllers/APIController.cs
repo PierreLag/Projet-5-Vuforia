@@ -100,7 +100,7 @@ public class APIController : MonoBehaviour
             case UnityWebRequest.Result.Success:
                 string userJSON = apiRequest.downloadHandler.text;
                 Debug.Log("Login JSON : " + userJSON);
-                if (userJSON == "")
+                if (userJSON.Contains("Error : wrong username or password."))
                 {
                     latestResponse = "Login mismatch";
                 } else
@@ -120,11 +120,9 @@ public class APIController : MonoBehaviour
 
         formData.Add(new MultipartFormDataSection("login", username));
         formData.Add(new MultipartFormDataSection("password", password));
-        Debug.Log("Post form prepared for sending");
 
         UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/AddUser.php", formData);
         yield return apiRequest.SendWebRequest();
-        Debug.Log("Request ongoing");
 
         if (apiRequest.downloadHandler.text.Contains("Error :"))
         {
@@ -144,5 +142,39 @@ public class APIController : MonoBehaviour
         }
 
         latestResponse = apiRequest.result;
+    }
+
+    public static IEnumerator UpdateFurniturePrice(string name, float price)
+    {
+        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+
+        formData.Add(new MultipartFormDataSection("furnitureName", name));
+        formData.Add(new MultipartFormDataSection("price", price.ToString()));
+
+        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/UpdatePrice.php", formData);
+        yield return apiRequest.SendWebRequest();
+
+        switch (apiRequest.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+                latestResponse = "Connection error";
+                break;
+            case UnityWebRequest.Result.Success:
+                string userJSON = apiRequest.downloadHandler.text;
+                if (userJSON != "Error : Could not update price.")
+                {
+                    if (latestResponse == null)
+                    {
+                        latestResponse = 1;
+                    }
+                    else
+                    {
+                        latestResponse = (int)latestResponse + 1;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

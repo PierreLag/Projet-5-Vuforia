@@ -6,11 +6,30 @@ using UnityEngine;
 public class User
 {
     public string login;
+    public string accessLevel;
     public UserRole role;
 
     public static User FromJSON(string json)
     {
-        return JsonUtility.FromJson<User>(json);
+        User user = JsonUtility.FromJson<User>(json);
+        
+        switch (user.accessLevel)
+        {
+            case "USER":
+                user.role = UserRole.USER;
+                break;
+            case "SUPPORT":
+                user.role = UserRole.SUPPORT;
+                break;
+            case "ADMIN":
+                user.role = UserRole.ADMIN;
+                break;
+            case "SUPERADMIN":
+                user.role = UserRole.SUPERADMIN;
+                break;
+        }
+
+        return user;
     }
 
     public User(string username)
