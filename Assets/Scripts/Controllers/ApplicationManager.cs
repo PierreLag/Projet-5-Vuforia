@@ -79,8 +79,6 @@ public class ApplicationManager : MonoBehaviour
             response = APIController.GetResponse();
             timesWaiting++;
         }
-        Debug.Log("Is Response null ? " + (response == null ? "Yes" : "No"));
-
         List<Furniture> furnitures = (List<Furniture>)response;
         APIController.ResetResponse();
 

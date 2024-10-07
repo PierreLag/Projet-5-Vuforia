@@ -10,6 +10,9 @@ public class APIController : MonoBehaviour
     private static object latestResponse;
     static APIController _this;
 
+    [SerializeField]
+    private string apiUrl;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,7 +27,7 @@ public class APIController : MonoBehaviour
 
     public static IEnumerator GetAllFurnitures()
     {
-        UnityWebRequest apiRequest = UnityWebRequest.Get("http://localhost/MYG/ikear/GetAllFurnitures.php");
+        UnityWebRequest apiRequest = UnityWebRequest.Get(_this.apiUrl + "/MYG/ikear/GetAllFurnitures.php");
         apiRequest.SendWebRequest();
 
         while(!apiRequest.isDone)
@@ -89,7 +92,7 @@ public class APIController : MonoBehaviour
         formData.Add(new MultipartFormDataSection("login", username));
         formData.Add(new MultipartFormDataSection("password", password));
 
-        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/Login.php", formData);
+        UnityWebRequest apiRequest = UnityWebRequest.Post(_this.apiUrl + "/MYG/ikear/Login.php", formData);
         yield return apiRequest.SendWebRequest();
 
         switch (apiRequest.result)
@@ -99,7 +102,6 @@ public class APIController : MonoBehaviour
                 break;
             case UnityWebRequest.Result.Success:
                 string userJSON = apiRequest.downloadHandler.text;
-                Debug.Log("Login JSON : " + userJSON);
                 if (userJSON.Contains("Error : wrong username or password."))
                 {
                     latestResponse = "Login mismatch";
@@ -121,7 +123,7 @@ public class APIController : MonoBehaviour
         formData.Add(new MultipartFormDataSection("login", username));
         formData.Add(new MultipartFormDataSection("password", password));
 
-        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/AddUser.php", formData);
+        UnityWebRequest apiRequest = UnityWebRequest.Post(_this.apiUrl + "/MYG/ikear/AddUser.php", formData);
         yield return apiRequest.SendWebRequest();
 
         if (apiRequest.downloadHandler.text.Contains("Error :"))
@@ -151,7 +153,7 @@ public class APIController : MonoBehaviour
         formData.Add(new MultipartFormDataSection("furnitureName", name));
         formData.Add(new MultipartFormDataSection("price", price.ToString()));
 
-        UnityWebRequest apiRequest = UnityWebRequest.Post("http://localhost/MYG/ikear/UpdatePrice.php", formData);
+        UnityWebRequest apiRequest = UnityWebRequest.Post(_this.apiUrl + "/MYG/ikear/UpdatePrice.php", formData);
         yield return apiRequest.SendWebRequest();
 
         switch (apiRequest.result)
