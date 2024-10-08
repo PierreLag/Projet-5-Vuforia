@@ -9,7 +9,7 @@ Pour télécharger l'APK de l'application, veuillez cliquer [ici](https://drive.
 Si vous téléchargez le projet Unity en lui-même, vous risquez de rencontrer une erreur, causée par le manque d'un fichier qui est bien trop large pour pouvoir être inclus dans le repository Github. Le fichier en question peut être téléchargé avec [ce lien ci](https://drive.google.com/file/d/1hmGrSk40-OTc45cAcZSkU2HGcU2mP-4a/view?usp=drive_link), et doit être placé dans le dossier Packages/.
 
 ## Installation serveur local
-Pour que l'application fonctionne correctement, un serveur local doit être hébergé. Pour se faire, une application de type MAMP ou XAMP doit être utilisée. Voici comment installer le serveur avec MAMP :
+Un serveur en ligne est actuellement en fonctionement, et l'éditeur et l'APK l'utilisent en ce moment. Cependant, si vous souhaitez héberger le serveur en local dans le cadre de tests, pour que l'application fonctionne correctement, un serveur local doit être hébergé. Pour se faire, une application de type MAMP ou XAMP doit être utilisée. Voici comment installer le serveur avec MAMP :
 - Téléchargez et installez MAMP [ici](https://www.mamp.info/en/windows/).
 - Accédez au dossier MAMP dans votre disque local C (ou dans l'emplacement d'installation de votre choix).
 - Allez dans le dossier htdocs.
