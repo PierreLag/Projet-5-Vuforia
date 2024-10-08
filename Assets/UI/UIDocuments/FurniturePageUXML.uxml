@@ -9,7 +9,7 @@
         <ui:VisualElement name="AccountArea" style="flex-grow: 1; max-height: 8%; height: 5%; min-height: 120px; flex-direction: row-reverse; align-items: center; background-color: rgb(238, 238, 238);">
             <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Pfp" />
             <ui:Label tabindex="-1" text="Username" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Username" />
-            <ui:Button text="Login or create account" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
+            <ui:Button text="Connexion/Créer un compte" parse-escape-sequences="true" display-tooltip-when-elided="true" name="NoAccount" />
         </ui:VisualElement>
         <ui:VisualElement name="Content" style="flex-grow: 1;">
             <ui:ScrollView scroll-deceleration-rate="0,135" elasticity="0,1" name="FurnitureDetails">

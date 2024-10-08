@@ -61,11 +61,14 @@
     border-right-color: rgba(0, 0, 0, 0);
     border-top-color: rgba(0, 0, 0, 0);
     border-bottom-color: rgba(0, 0, 0, 0);
-    max-width: 90%;
-    width: 80%;
-    min-width: 570px;
+    max-width: 100%;
+    width: 100%;
+    min-width: 680px;
     display: flex;
     color: rgb(65, 75, 178);
+    -unity-text-align: middle-right;
+    white-space: nowrap;
+    text-overflow: clip;
 }
 
 #Content {
